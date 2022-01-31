@@ -1,0 +1,23 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "expiration date tracking app",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamestw13/still-good.git"
+  },
+  "keywords": [
+    "MERN",
+    "React"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamestw13/still-good/issues"
+  },
+  "homepage": "https://github.com/jamestw13/still-good#readme"
+}
