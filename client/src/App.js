@@ -1,16 +1,19 @@
 import './App.css';
 
+import Header from './components/Header';
+import Welcome from './pages/Welcome';
+import Join from './pages/Join';
+import ItemList from './pages/ItemList';
+import ItemEdit from './pages/ItemEdit';
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <Welcome />
+      <Join />
+      <ItemList />
+      <ItemEdit />
     </div>
   );
 }
