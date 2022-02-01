@@ -16,7 +16,7 @@ function Header() {
         <MenuItem component={Link} to="/itemlist">
           ItemList
         </MenuItem>
-        <MenuItem component={Link} to="/single-item">
+        <MenuItem component={Link} to="/itemedit">
           ItemEdit
         </MenuItem>
       </Toolbar>

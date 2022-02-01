@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Grid, ButtonGroup, Button, TextField } from '@mui/material';
+import { Paper, Typography, Grid, ButtonGroup, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -8,16 +8,10 @@ function SingleItem({ item }) {
     <Paper variant="outlined" sx={{ p: 2, margin: '2px', maxWidth: 500, flexGrow: 1 }}>
       <Grid container>
         <Grid item xs={10} alignItems="flex-start" container direction="column">
-          <Grid container>
-            <Grid item xs={8}>
-              <Typography gutterBottom variant="subtitle1" component="div">
-                {item.name}
-              </Typography>
-            </Grid>
-            <Grid item xs={2}>
-              <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
-            </Grid>
-          </Grid>
+          <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">
+            {item.name}
+          </Typography>
+
           <Typography variant="body2" gutterBottom>
             Expires on: {item.dateExpires}
           </Typography>
