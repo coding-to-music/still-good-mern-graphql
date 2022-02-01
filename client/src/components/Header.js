@@ -6,7 +6,7 @@ function Header() {
   return (
     <AppBar>
       <h2>StillGood</h2>
-      <Toolbar disableGutters="true">
+      <Toolbar disableGutters={true}>
         <MenuItem component={Link} to="/">
           Welcome
         </MenuItem>
@@ -16,7 +16,7 @@ function Header() {
         <MenuItem component={Link} to="/itemlist">
           ItemList
         </MenuItem>
-        <MenuItem component={Link} to="/itemedit">
+        <MenuItem component={Link} to="/single-item">
           ItemEdit
         </MenuItem>
       </Toolbar>

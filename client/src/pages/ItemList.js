@@ -1,7 +1,7 @@
 import React from 'react';
-import { Stack, Typography } from '@mui/material';
+import { Stack, Typography, Button } from '@mui/material';
 
-import ItemEntry from '../components/ItemEntry';
+import SingleItem from '../components/SingleItem';
 
 const sampleData = [
   {
@@ -29,14 +29,13 @@ const sampleData = [
 
 function ItemList() {
   return (
-    <>
+    <Stack>
       <Typography variant="h4">Item List</Typography>
-      <Stack>
-        {sampleData.map(item => {
-          return <ItemEntry item={item} key={item.id} />;
-        })}
-      </Stack>
-    </>
+      {sampleData.map(item => {
+        return <SingleItem item={item} key={item.id} />;
+      })}
+      <Button variant="contained">Add Items</Button>
+    </Stack>
   );
 }
 
