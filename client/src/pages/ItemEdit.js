@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, ButtonGroup, Grid, MenuItem, Select, Stack, TextField } from '@mui/material';
+import { Button, ButtonGroup, MenuItem, Select, Stack, TextField } from '@mui/material';
 
 function ItemEdit() {
   function editField() {}
@@ -56,7 +56,7 @@ function ItemEdit() {
           <ButtonGroup>
             <Button>Submit</Button>
             <Button>Submit and Add</Button>
-            <Button>Cancel</Button>
+            <Button href="/itemlist">Cancel</Button>
           </ButtonGroup>
         </Stack>
       </form>

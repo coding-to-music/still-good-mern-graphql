@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Welcome from './pages/Welcome';
-import Join from './pages/Join';
+import Login from './pages/Login';
 import ItemList from './pages/ItemList';
 import SingleItem from './pages/ItemEdit';
 
@@ -14,7 +14,7 @@ function App() {
         <Header />
         <Routes>
           <Route exact path="/" element={<Welcome />} />
-          <Route exact path="/join" element={<Join />} />
+          <Route exact path="/login" element={<Login />} />
           <Route exact path="/itemlist" element={<ItemList />} />
           <Route exact path="/itemedit" element={<SingleItem />} />
         </Routes>

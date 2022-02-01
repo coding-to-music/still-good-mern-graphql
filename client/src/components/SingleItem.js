@@ -1,7 +1,8 @@
 import React from 'react';
-import { Paper, Typography, Grid, ButtonGroup, Button } from '@mui/material';
+import { Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
+import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 
 function SingleItem({ item }) {
   return (
@@ -20,13 +21,24 @@ function SingleItem({ item }) {
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <ButtonGroup variant="contained" orientation="vertical">
-            <Button href="/itemedit">
-              <EditIcon />
-            </Button>
-            <Button>
-              <DeleteIcon />
-            </Button>
+          <ButtonGroup variant="contained" orientation="vertical" size="small">
+            <Tooltip title="Edit" placement="left">
+              <Button href="/itemedit">
+                <EditIcon />
+              </Button>
+            </Tooltip>
+
+            <Tooltip title="Delete" placement="left">
+              <Button>
+                <DeleteIcon />
+              </Button>
+            </Tooltip>
+
+            <Tooltip title="Find Recipie" placement="left">
+              <Button>
+                <DinnerDiningIcon />
+              </Button>
+            </Tooltip>
           </ButtonGroup>
         </Grid>
       </Grid>

@@ -34,7 +34,9 @@ function ItemList() {
       {sampleData.map(item => {
         return <SingleItem item={item} key={item.id} />;
       })}
-      <Button variant="contained">Add Items</Button>
+      <Button href="/itemedit" variant="contained">
+        Add Items
+      </Button>
     </Stack>
   );
 }

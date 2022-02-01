@@ -11,7 +11,7 @@ function Welcome() {
         Still Good. Don't let food get old enough to throw away.
       </p>
 
-      <Button variant="contained" href="/join">
+      <Button variant="contained" href="/login">
         Login or Sign up to start today
       </Button>
     </div>
