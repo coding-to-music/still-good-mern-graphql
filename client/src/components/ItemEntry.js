@@ -1,16 +1,38 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Paper, Typography, Grid, ButtonGroup, Button } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
-function ItemEntry() {
+function ItemEntry({ item }) {
   return (
-    <div>
-      <h4>Apples</h4>
-      <p>Expires on: 'February 12, 2022</p>
-      <p>Added on: 'February 2, 2022</p>
-      <p>Stored: Counter</p>
-      <Link to="/itemedit">Edit</Link>
-      <button>Delete</button>
-    </div>
+    <Paper variant="outlined" sx={{ p: 2, margin: '2px', maxWidth: 500, flexGrow: 1 }}>
+      <Grid container>
+        <Grid item xs={10} alignItems="flex-start" container direction="column">
+          <Typography gutterBottom variant="subtitle1" component="div">
+            {item.name}
+          </Typography>
+          <Typography variant="body2" gutterBottom>
+            Expires on: {item.dateExpires}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Added: {item.dateAdded}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Stored: {item.storageLocation}
+          </Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <ButtonGroup variant="contained" orientation="vertical">
+            <Button href="/itemedit">
+              <EditIcon />
+            </Button>
+            <Button>
+              <DeleteIcon />
+            </Button>
+          </ButtonGroup>
+        </Grid>
+      </Grid>
+    </Paper>
   );
 }
 
