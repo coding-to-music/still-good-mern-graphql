@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from '@mui/material';
 
 function Welcome() {
   return (
@@ -9,6 +10,10 @@ function Welcome() {
         pantry, and medicine cabinet. Help plan your meals by picking the ingredients you already own, while they're
         Still Good. Don't let food get old enough to throw away.
       </p>
+
+      <Button variant="contained" href="/join">
+        Login or Sign up to start today
+      </Button>
     </div>
   );
 }
