@@ -11,13 +11,12 @@ function Login() {
     signupPasswordConfirm: '',
   });
 
-  function handleChange(event) {
+  async function handleChange(event) {
     const { name, value } = event.target;
     setformState({
       ...formState,
       [name]: value,
     });
-    console.log(formState);
   }
   function handleLogin(event) {
     event.preventDefault();
