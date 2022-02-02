@@ -19,7 +19,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
 
   return (
     <>
-      <Paper variant="outlined" sx={{ p: 2, margin: '2px', maxWidth: 500, flexGrow: 1 }}>
+      <Paper variant="outlined" sx={{ p: 2, marginBottom: 0.5, maxWidth: 500, flexGrow: 1 }}>
         <Grid container>
           <Grid item xs={10} alignItems="flex-start" container direction="column">
             <Typography gutterBottom variant="subtitle1" component="div" textAlign="left">

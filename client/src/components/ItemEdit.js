@@ -5,13 +5,31 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
 
 function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
-  // TODO Generic onChange handler
-  function editField() {}
+  // Generic onChange handler
+  function editField(event) {
+    const { name, value } = event.target;
+    setEditedItem({
+      ...editedItem,
+      [name]: value,
+    });
+  }
 
   // TODO Submit button handler
-  function handleFormSubmit() {}
+  function handleFormSubmit() {
+    // TODO useMutation saveItem
+
+    // clear edited
+    setEditedItem({});
+
+    setDialogOpen(false);
+  }
   // TODO Submit and add button handler
-  function handleSubmitAndAdd() {}
+  function handleSubmitAndAdd() {
+    // TODO useMutation saveItem
+
+    // clear edited
+    setEditedItem({});
+  }
 
   // Cancel button handler
   function handleEditCancel() {
@@ -27,6 +45,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
         <Stack margin={2} spacing={2}>
           {/* Name Field */}
           <TextField
+            name="name"
             value={editedItem.name}
             size="small"
             label="Item"
@@ -41,6 +60,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             <Grid item xs={7}>
               {/* Quantity Field */}
               <TextField
+                name="quantity"
                 value={editedItem.quantity}
                 size="small"
                 label="Quantity"
@@ -54,6 +74,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             <Grid item xs={5}>
               {/* Unit Field */}
               <TextField
+                name="unit"
                 value={editedItem.unit}
                 size="small"
                 label="Unit"
@@ -67,6 +88,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
           </Grid>
           {/* Use By Field */}
           <TextField
+            name="useByDate"
             value={editedItem.useByDate}
             size="small"
             label="Use by"
@@ -79,6 +101,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
 
           {/* Added On Field */}
           <TextField
+            name="addedDate"
             value={editedItem.addedDate}
             size="small"
             label="Added on"
@@ -91,7 +114,13 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
 
           {/* Storage Location Selector */}
           {/* TODO resolve controlled/uncontrolled object error */}
-          <Select label="Stored where" size="small" value={editedItem.storageLocation} onChange={editField}>
+          <Select
+            name="storageLocation"
+            label="Stored where"
+            size="small"
+            value={editedItem.storageLocation ? editedItem.storageLocation : 'other'}
+            onChange={editField}
+          >
             <MenuItem value="fridge">Fridge</MenuItem>
             <MenuItem value="freezer">Freezer</MenuItem>
             <MenuItem value="pantry">Pantry</MenuItem>
