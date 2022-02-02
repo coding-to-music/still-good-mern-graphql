@@ -1,5 +1,8 @@
 import React from 'react';
-import { Button, ButtonGroup, Dialog, DialogTitle, MenuItem, Select, Stack, TextField } from '@mui/material';
+import { Button, ButtonGroup, Dialog, DialogTitle, Grid, MenuItem, Select, Stack, TextField } from '@mui/material';
+import TaskAlt from '@mui/icons-material/TaskAlt';
+import AddTaskIcon from '@mui/icons-material/AddTask';
+import DoDisturb from '@mui/icons-material/DoDisturb';
 
 function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
   // TODO Generic onChange handler
@@ -22,6 +25,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
       <DialogTitle>Add/Edit Items</DialogTitle>
       <form onSubmit={handleFormSubmit}>
         <Stack margin={2} spacing={2}>
+          {/* Name Field */}
           <TextField
             value={editedItem.name}
             size="small"
@@ -32,16 +36,36 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             }}
             onChange={editField}
           />
-          <TextField
-            value={editedItem.quantity}
-            size="small"
-            label="Quantity"
-            type="number"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            onChange={editField}
-          />
+
+          <Grid container>
+            <Grid item xs={7}>
+              {/* Quantity Field */}
+              <TextField
+                value={editedItem.quantity}
+                size="small"
+                label="Quantity"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={editField}
+              />
+            </Grid>
+            <Grid item xs={5}>
+              {/* Unit Field */}
+              <TextField
+                value={editedItem.unit}
+                size="small"
+                label="Unit"
+                type="text"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                onChange={editField}
+              />
+            </Grid>
+          </Grid>
+          {/* Use By Field */}
           <TextField
             value={editedItem.useByDate}
             size="small"
@@ -52,6 +76,8 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             }}
             onChange={editField}
           />
+
+          {/* Added On Field */}
           <TextField
             value={editedItem.addedDate}
             size="small"
@@ -62,6 +88,8 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             }}
             onChange={editField}
           />
+
+          {/* Storage Location Selector */}
           {/* TODO resolve controlled/uncontrolled object error */}
           <Select label="Stored where" size="small" value={editedItem.storageLocation} onChange={editField}>
             <MenuItem value="fridge">Fridge</MenuItem>
@@ -69,10 +97,18 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             <MenuItem value="pantry">Pantry</MenuItem>
             <MenuItem value="other">Other</MenuItem>
           </Select>
-          <ButtonGroup>
-            <Button onClick={handleFormSubmit}>Submit</Button>
-            <Button onClick={handleSubmitAndAdd}>Submit and Add</Button>
-            <Button onClick={handleEditCancel}>Cancel</Button>
+
+          {/* Buttons */}
+          <ButtonGroup variant="contained" fullWidth={true}>
+            <Button onClick={handleFormSubmit}>
+              <TaskAlt />
+            </Button>
+            <Button onClick={handleSubmitAndAdd}>
+              <AddTaskIcon />
+            </Button>
+            <Button onClick={handleEditCancel}>
+              <DoDisturb />
+            </Button>
           </ButtonGroup>
         </Stack>
       </form>
