@@ -17,12 +17,4 @@ type Item {
 }
 `;
 
-// module.exports = typeDefs;
-// QUERIES
-// me returns User type
-
-// MUTATIONS
-// login, accepts email, password, returns Auth(JWT)
-// addUser, accepts email, password, returns Auth
-// saveItem, accepts array of categories(strings), storage location(string), addedDate(date), experiationDate(date), name(string), quantity(int)
-// removeItem, accepts itemId(verifies it belongs to user)
+module.exports = typeDefs;
