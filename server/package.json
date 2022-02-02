@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jamestw13/still-good.git"
+    "url": "git+https://github.com/vw0389/still-good.git"
   },
   "keywords": [
     "MERN",
@@ -17,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jamestw13/still-good/issues"
+    "url": "https://github.com/vw0389/still-good/issues"
   },
-  "homepage": "https://github.com/jamestw13/still-good#readme"
+  "homepage": "https://github.com/vw0389/still-good#readme"
 }
