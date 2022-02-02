@@ -13,7 +13,7 @@ type User {
     _id: ID
     email: String
     itemCount: Int
-    savedBooks: [Item]s
+    savedItems: [Item]s
   }
 type Item {
     categories: [String]

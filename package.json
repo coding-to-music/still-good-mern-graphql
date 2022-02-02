@@ -4,17 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1"
+=======
+    "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "build": "cd client && npm run build"
+>>>>>>> 543e39f95df85aedbcfe8e871fe1a8d539d7f58c
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vw0389/still-good.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Victor Weinert, TJ James, Lauren Groh, Melvin Welton, Patrick Sebstead, Alex McDaniel",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vw0389/still-good/issues"
   },
   "homepage": "https://github.com/vw0389/still-good#readme",
-  "dependencies": {}
+  "dependencies": {
+    "concurrently": "^7.0.0"
+  }
 }
