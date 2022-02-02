@@ -1,5 +1,5 @@
 import React from 'react';
-import { Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
+import { Link, Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
@@ -23,7 +23,7 @@ function SingleItem({ item }) {
         <Grid item xs={2}>
           <ButtonGroup variant="contained" orientation="vertical" size="small">
             <Tooltip title="Edit" placement="left">
-              <Button href="/itemedit">
+              <Button element={Link} to={{ pathname: '/itemedit', state: { item } }}>
                 <EditIcon />
               </Button>
             </Tooltip>
