@@ -32,7 +32,7 @@ function ItemList() {
     <Stack>
       <Typography variant="h4">Item List</Typography>
       {itemData.map(item => {
-        return <SingleItem item={item} key={item.id} />;
+        return <SingleItem setItemData={setItemData} item={item} key={item.id} />;
       })}
       <Button href="/itemedit" variant="contained">
         Add Items

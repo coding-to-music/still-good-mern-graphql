@@ -1,10 +1,11 @@
 import React from 'react';
-import { Link, Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 
-function SingleItem({ item }) {
+function SingleItem({ item, setItemData }) {
   return (
     <Paper variant="outlined" sx={{ p: 2, margin: '2px', maxWidth: 500, flexGrow: 1 }}>
       <Grid container>
@@ -23,7 +24,7 @@ function SingleItem({ item }) {
         <Grid item xs={2}>
           <ButtonGroup variant="contained" orientation="vertical" size="small">
             <Tooltip title="Edit" placement="left">
-              <Button element={Link} to={{ pathname: '/itemedit', state: { item } }}>
+              <Button component={Link} to={{ pathname: '/itemedit', setItemData: { setItemData }, item: { item } }}>
                 <EditIcon />
               </Button>
             </Tooltip>

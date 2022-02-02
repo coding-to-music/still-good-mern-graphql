@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, ButtonGroup, MenuItem, Select, Stack, TextField } from '@mui/material';
 
-function ItemEdit() {
+function ItemEdit(props) {
+  console.log(props);
   function editField() {}
   function handleFormSubmit() {}
   const storageOptions = ['fridge', 'freezer', 'pantry', 'counter', 'add option'];
@@ -14,6 +15,7 @@ function ItemEdit() {
             size="small"
             label="Item"
             type="text"
+            // value={item.name}
             InputLabelProps={{
               shrink: true,
             }}
