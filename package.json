@@ -13,8 +13,8 @@
     "type": "git",
     "url": "git+https://github.com/vw0389/still-good.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Victor Weinert, TJ James, Lauren Groh, Melvin Welton, Patrick Sebstead, Alex McDaniel",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vw0389/still-good/issues"
   },
