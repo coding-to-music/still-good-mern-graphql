@@ -51,7 +51,7 @@ function ItemList() {
   }
 
   return (
-    <Stack>
+    <Stack margin={1}>
       <ItemEdit
         dialogOpen={dialogOpen}
         setDialogOpen={setDialogOpen}
