@@ -14,6 +14,9 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
     });
   }
 
+  // TODO Create validation for required fields
+  // Have been checking out this video for reference: https://www.youtube.com/watch?v=sTdt2cJS2dg
+
   // TODO Submit button handler
   function handleFormSubmit() {
     // TODO useMutation saveItem
@@ -73,6 +76,10 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             </Grid>
             <Grid item xs={5}>
               {/* Unit Field */}
+              {/*
+              // TODO make this a select instead of a text field
+              // TODO create select options
+              */}
               <TextField
                 name="unit"
                 value={editedItem.unit}
@@ -113,7 +120,9 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
           />
 
           {/* Storage Location Selector */}
-          {/* TODO resolve controlled/uncontrolled object error */}
+          {/* 
+          //TODO resolve controlled/uncontrolled object error 
+          */}
           <Select
             name="storageLocation"
             label="Stored where"
