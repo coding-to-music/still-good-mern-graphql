@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
-import { Link, Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
+import React from 'react';
+import { Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 
-function SingleItem(props) {
-  const { item, setDialogOpen, setEditedItem } = props;
+function SingleItem({ item, setDialogOpen, setEditedItem }) {
+  // Edit item button handler
   function handleEditItem() {
+    // Set item to be edited in modal
     setEditedItem(item);
+    // Open edit modal
     setDialogOpen(true);
   }
+
+  // TODO Delete button handler
+
+  // TODO recipe search handler ??
+
   return (
     <>
       <Paper variant="outlined" sx={{ p: 2, margin: '2px', maxWidth: 500, flexGrow: 1 }}>
@@ -20,7 +27,7 @@ function SingleItem(props) {
             </Typography>
 
             <Typography variant="body2" gutterBottom>
-              Expires on: {item.dateExpires}
+              Expires on: {item.useByDate}
             </Typography>
             <Typography variant="body2" color="text.secondary">
               Stored: {item.storageLocation}
