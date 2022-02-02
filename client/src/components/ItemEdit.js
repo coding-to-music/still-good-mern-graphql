@@ -1,13 +1,18 @@
 import React from 'react';
 import { Button, ButtonGroup, Dialog, DialogTitle, MenuItem, Select, Stack, TextField } from '@mui/material';
 
-function ItemEdit(props) {
-  const { dialogOpen, editedItem, setDialogOpen } = props;
-  console.log(dialogOpen, editedItem);
+function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
+  // TODO Generic onChange handler
   function editField() {}
+
+  // TODO Submit button handler
   function handleFormSubmit() {}
+  // TODO Submit and add button handler
   function handleSubmitAndAdd() {}
+
+  // Cancel button handler
   function handleEditCancel() {
+    setEditedItem({});
     setDialogOpen(false);
   }
 
@@ -37,9 +42,8 @@ function ItemEdit(props) {
             }}
             onChange={editField}
           />
-
           <TextField
-            value={editedItem.dateExpires}
+            value={editedItem.useByDate}
             size="small"
             label="Use by"
             type="date"
@@ -48,9 +52,8 @@ function ItemEdit(props) {
             }}
             onChange={editField}
           />
-
           <TextField
-            value={editedItem.dateAdded}
+            value={editedItem.addedDate}
             size="small"
             label="Added on"
             type="date"
@@ -59,12 +62,13 @@ function ItemEdit(props) {
             }}
             onChange={editField}
           />
-
-          {/* <Select label="Stored where" size="small" onChange={editField}>
-            {storageOptions.map(option => {
-              return <MenuItem key={option}></MenuItem>;
-            })}
-          </Select> */}
+          {/* TODO resolve controlled/uncontrolled object error */}
+          <Select label="Stored where" size="small" value={editedItem.storageLocation} onChange={editField}>
+            <MenuItem value="fridge">Fridge</MenuItem>
+            <MenuItem value="freezer">Freezer</MenuItem>
+            <MenuItem value="pantry">Pantry</MenuItem>
+            <MenuItem value="other">Other</MenuItem>
+          </Select>
           <ButtonGroup>
             <Button onClick={handleFormSubmit}>Submit</Button>
             <Button onClick={handleSubmitAndAdd}>Submit and Add</Button>
