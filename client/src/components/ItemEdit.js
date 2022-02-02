@@ -1,16 +1,24 @@
 import React from 'react';
-import { Button, ButtonGroup, MenuItem, Select, Stack, TextField } from '@mui/material';
+import { Button, ButtonGroup, Dialog, DialogTitle, MenuItem, Select, Stack, TextField } from '@mui/material';
 
-function ItemEdit() {
+function ItemEdit(props) {
+  const { dialogOpen, editedItem, setDialogOpen } = props;
+  console.log(dialogOpen, editedItem);
   function editField() {}
   function handleFormSubmit() {}
-  const storageOptions = ['fridge', 'freezer', 'pantry', 'counter', 'add option'];
+  function handleSubmitAndAdd() {}
+  function handleEditCancel() {
+    setDialogOpen(false);
+  }
+
+  function handleClose() {}
   return (
-    <>
-      <h2>Add/Edit Items</h2>
+    <Dialog onClose={handleClose} open={dialogOpen}>
+      <DialogTitle>Add/Edit Items</DialogTitle>
       <form onSubmit={handleFormSubmit}>
         <Stack margin={2} spacing={2}>
           <TextField
+            value={editedItem.name}
             size="small"
             label="Item"
             type="text"
@@ -20,15 +28,18 @@ function ItemEdit() {
             onChange={editField}
           />
           <TextField
+            value={editedItem.quantity}
             size="small"
             label="Quantity"
             type="number"
             InputLabelProps={{
               shrink: true,
             }}
+            onChange={editField}
           />
 
           <TextField
+            value={editedItem.dateExpires}
             size="small"
             label="Use by"
             type="date"
@@ -39,6 +50,7 @@ function ItemEdit() {
           />
 
           <TextField
+            value={editedItem.dateAdded}
             size="small"
             label="Added on"
             type="date"
@@ -48,19 +60,19 @@ function ItemEdit() {
             onChange={editField}
           />
 
-          <Select label="Stored where" size="small" onChange={editField}>
+          {/* <Select label="Stored where" size="small" onChange={editField}>
             {storageOptions.map(option => {
-              return <MenuItem key={option}>{option}</MenuItem>;
+              return <MenuItem key={option}></MenuItem>;
             })}
-          </Select>
+          </Select> */}
           <ButtonGroup>
-            <Button>Submit</Button>
-            <Button>Submit and Add</Button>
-            <Button href="/itemlist">Cancel</Button>
+            <Button onClick={handleFormSubmit}>Submit</Button>
+            <Button onClick={handleSubmitAndAdd}>Submit and Add</Button>
+            <Button onClick={handleEditCancel}>Cancel</Button>
           </ButtonGroup>
         </Stack>
       </form>
-    </>
+    </Dialog>
   );
 }
 
