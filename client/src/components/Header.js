@@ -6,7 +6,9 @@ function Header() {
   return (
     <AppBar>
       <Toolbar disableGutters={true}>
-        <Typography variant="h4">StillGood</Typography>
+        <Typography variant="h4" sx={{ m: 2 }}>
+          StillGood
+        </Typography>
         <MenuItem component={Link} to="/">
           Welcome
         </MenuItem>
