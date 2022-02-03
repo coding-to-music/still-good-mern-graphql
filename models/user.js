@@ -1,7 +1,10 @@
 const {Schema, model} = require('mongoose');
 
+const{Schema} = mongoose;
+const bcrypt = require('bcrypt');
+
 const UserSchema = new Schema({
-    User :{
+    Username :{
         type: String,
         required: true,
         trim: true
@@ -16,7 +19,14 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         minlength: 7
-    }
+    },
+
+    itemCount:{
+
+    },
+    saveItem:[
+        
+    ]
     
 });
 const User = model('User', UserSchema);
