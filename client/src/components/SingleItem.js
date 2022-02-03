@@ -22,6 +22,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
   return (
     <Box
       variant="outlined"
+      // TODO make background colors less bold - probably through general theming
       sx={{ p: 2, marginBottom: 0.5, maxWidth: 500, flexGrow: 1, bgcolor: colorCardByDate(item.useByDate) }}
     >
       {/* Overall Grid*/}
