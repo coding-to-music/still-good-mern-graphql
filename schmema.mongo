@@ -16,10 +16,20 @@ type User {
     savedItems: [Item]s
   }
 type Item {
+<<<<<<< HEAD
     categories: [String]
     storageLocation: String
     addedDate: Date
     exeriationDate: Date
     name: String
     quantity: Int
+=======
+    categories: [String]  # TJ: not sure this is necessary/overengineering
+    storageLocation: String
+    addedDate: Date # front end needs format yyyy-mm-dd, could write a frontend helper function
+    useByDate: Date
+    name: String
+    quantity: Int
+    unit: String
+>>>>>>> tj.james-branch
 }
