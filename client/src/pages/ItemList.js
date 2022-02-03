@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Stack, Typography, Button } from '@mui/material';
-
+import { Stack, Typography, Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 import SingleItem from '../components/SingleItem';
 import ItemEdit from '../components/ItemEdit';
 
+import { sortDate } from '../utils/helpers';
 // TODO replace test data with useQuery to pull in user's items
-import { sampleData, sortItems } from '../utils/helpers';
+import { sampleData } from '../utils/sampleData';
 
 function ItemList() {
   // Set which item will be edited in ItemEdit modal
@@ -15,7 +16,7 @@ function ItemList() {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   // TODO replace test data with useQuery to pull in user's items
-  const [itemData] = useState(sampleData);
+  const [itemData] = useState(sortDate(sampleData));
 
   // Add Item(s) button handler
   function handleAddItem() {
@@ -36,24 +37,15 @@ function ItemList() {
       <Typography variant="h4">Item List</Typography>
 
       {/* Sort item array on render */}
-      {itemData.sort((a, b) => {
-        if (a.useByDate < b.useByDate) {
-          return -1;
-        }
-        if (a.useByDate > b.useByDate) {
-          return 1;
-        }
-
-        return 0;
-      })}
+      {console.log()}
 
       {/* Map items into cards */}
       {itemData.map(item => {
         return <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />;
       })}
-      <Button onClick={handleAddItem} variant="contained">
-        Add Item(s)
-      </Button>
+      <Fab onClick={handleAddItem} color="primary" aria-label="add" style={{ position: 'fixed bottom right' }}>
+        <AddIcon />
+      </Fab>
     </Stack>
   );
 }
