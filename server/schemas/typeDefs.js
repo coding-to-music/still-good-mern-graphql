@@ -27,6 +27,13 @@ type Query {
   thoughts(username: String): [Thought]
   thought(_id: ID!): Thought
 }
+
+type Mutation {
+  login($email: String!, $password: String!): jws
+  addUser($email: String!, $password: String!): Auth
+// saveItem(accepts array of categories (strings), storage location (string), addedDate (date), experiationDate (date), name (string), quantity (int))
+// removeItem(accepts itemId (verifies it belongs to user))
+}
 `;
 
 module.exports = typeDefs;
