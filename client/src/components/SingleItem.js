@@ -1,6 +1,7 @@
 import React from 'react';
+import dayjs from 'dayjs';
 import { colorCardByDate } from '../utils/helpers';
-import { Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
+import { Box, Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
@@ -19,7 +20,10 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
   // TODO recipe search handler ??
 
   return (
-    <Paper variant="outlined" sx={{ p: 2, marginBottom: 0.5, maxWidth: 500, flexGrow: 1 }}>
+    <Box
+      variant="outlined"
+      sx={{ p: 2, marginBottom: 0.5, maxWidth: 500, flexGrow: 1, bgcolor: colorCardByDate(item.useByDate) }}
+    >
       {/* Overall Grid*/}
       <Grid container>
         {/* Text Column */}
@@ -41,7 +45,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
           </Grid>
           {/* Use By Date */}
           <Typography variant="body2" gutterBottom>
-            Use by: {item.useByDate}
+            Use by: {dayjs(item.useByDate).format('MM/DD/YY')}
           </Typography>
 
           {/* Storage Location */}
@@ -74,7 +78,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
           </ButtonGroup>
         </Grid>
       </Grid>
-    </Paper>
+    </Box>
   );
 }
 

@@ -1,4 +1,4 @@
-const dayJs = require('dayjs');
+import dayJs from 'dayjs';
 
 export function sortDate(itemArray) {
   itemArray.sort((a, b) => {
