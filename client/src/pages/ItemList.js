@@ -27,26 +27,28 @@ function ItemList() {
   }
 
   return (
-    <Stack margin={1}>
-      <ItemEdit
-        dialogOpen={dialogOpen}
-        setDialogOpen={setDialogOpen}
-        setEditedItem={setEditedItem}
-        editedItem={editedItem}
-      />
-      <Typography variant="h4">Item List</Typography>
+    <>
+      <Stack margin={1}>
+        <ItemEdit
+          dialogOpen={dialogOpen}
+          setDialogOpen={setDialogOpen}
+          setEditedItem={setEditedItem}
+          editedItem={editedItem}
+        />
+        <Typography variant="h4">Item List</Typography>
 
-      {/* Sort item array on render */}
-      {console.log()}
+        {/* Sort item array on render */}
+        {console.log()}
 
-      {/* Map items into cards */}
-      {itemData.map(item => {
-        return <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />;
-      })}
+        {/* Map items into cards */}
+        {itemData.map(item => {
+          return <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />;
+        })}
+      </Stack>
       <Fab onClick={handleAddItem} color="primary" aria-label="add" style={{ position: 'fixed bottom right' }}>
         <AddIcon />
       </Fab>
-    </Stack>
+    </>
   );
 }
 
