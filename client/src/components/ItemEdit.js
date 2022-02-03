@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, ButtonGroup, Dialog, DialogTitle, Grid, MenuItem, Select, Stack, TextField } from '@mui/material';
 import TaskAlt from '@mui/icons-material/TaskAlt';
 import AddTaskIcon from '@mui/icons-material/AddTask';
@@ -16,9 +16,28 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
 
   // TODO Create validation for required fields
   // Have been checking out this video for reference: https://www.youtube.com/watch?v=sTdt2cJS2dg
+  const [itemName, setItemName] = useState('');
+  const [useByDate, setUseByDate] = useState('');
+  const [itemNameError, setItemNameError] = useState(false);
+  const [useByDateError, setUseByDateError] = useState(false);
+
 
   // TODO Submit button handler
-  function handleFormSubmit() {
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setItemNameError(false);
+    setUseByDateError(false);
+
+    if (itemName == '') {
+      setItemNameError(true);
+    }
+    if (itemName == '') {
+      setUseByDateError(true);
+    }
+
+    if(itemName && useByDate){
+      console.log(itemName, useByDate);
+    }
     // TODO useMutation saveItem
 
     // clear edited
@@ -44,15 +63,18 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
   return (
     <Dialog onClose={handleClose} open={dialogOpen}>
       <DialogTitle>Add/Edit Items</DialogTitle>
-      <form onSubmit={handleFormSubmit}>
+      <form noValidate autoComplete="off" onSubmit={handleFormSubmit}>
         <Stack margin={2} spacing={2}>
           {/* Name Field */}
           <TextField
+            onChange={(e) => setItemName(e.target.value)}
             name="name"
             value={editedItem.name}
             size="small"
             label="Item"
             type="text"
+            required
+            error={itemNameError}
             // value={item.name}
             InputLabelProps={{
               shrink: true,
@@ -96,11 +118,14 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
           </Grid>
           {/* Use By Field */}
           <TextField
+            onChange={(e) => setUseByDate(e.target.value)}
             name="useByDate"
             value={editedItem.useByDate}
             size="small"
             label="Use by"
             type="date"
+            required
+            error={useByDateError}
             InputLabelProps={{
               shrink: true,
             }}
