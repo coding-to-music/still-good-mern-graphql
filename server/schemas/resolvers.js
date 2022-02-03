@@ -6,6 +6,9 @@ const resolvers = {
     me: async () => {
       return await User.findOne();
     },
+    test: async () => {
+      return 'Hello from test resolver!'
+    },
   },
   Mutation: {
     addUser: async (parent, args) => {
@@ -14,6 +17,7 @@ const resolvers = {
 
       return { token, user };
     },
+   
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
