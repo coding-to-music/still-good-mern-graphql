@@ -4,6 +4,9 @@ import { Stack, Typography, Button } from '@mui/material';
 import SingleItem from '../components/SingleItem';
 import ItemEdit from '../components/ItemEdit';
 
+// TODO replace test data with useQuery to pull in user's items
+import { sampleData, sortItems } from '../utils/helpers';
+
 function ItemList() {
   // Set which item will be edited in ItemEdit modal
   const [editedItem, setEditedItem] = useState({});
@@ -12,35 +15,7 @@ function ItemList() {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   // TODO replace test data with useQuery to pull in user's items
-  const [itemData] = useState([
-    {
-      _id: 1,
-      name: 'Apples',
-      quantity: 3,
-      unit: 'items',
-      useByDate: '2022-02-22',
-      addedDate: '2022-02-12',
-      storageLocation: 'fridge',
-    },
-    {
-      _id: 2,
-      name: 'Ice Cream',
-      quantity: 2,
-      unit: '',
-      useByDate: '2022-02-22',
-      addedDate: '2022-02-12',
-      storageLocation: 'freezer',
-    },
-    {
-      _id: 3,
-      name: 'Can of Green Beans',
-      quantity: 6,
-      unit: 'cup',
-      useByDate: '2022-02-22',
-      addedDate: '2022-02-12',
-      storageLocation: 'pantry',
-    },
-  ]);
+  const [itemData] = useState(sampleData);
 
   // Add Item(s) button handler
   function handleAddItem() {
@@ -59,6 +34,20 @@ function ItemList() {
         editedItem={editedItem}
       />
       <Typography variant="h4">Item List</Typography>
+
+      {/* Sort item array on render */}
+      {itemData.sort((a, b) => {
+        if (a.useByDate < b.useByDate) {
+          return -1;
+        }
+        if (a.useByDate > b.useByDate) {
+          return 1;
+        }
+
+        return 0;
+      })}
+
+      {/* Map items into cards */}
       {itemData.map(item => {
         return <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />;
       })}
