@@ -18,7 +18,7 @@ const foodItemSchema = new Schema({
         required: true,
         unique: true
     },
-    expiration:{
+    bestBy:{
         type: String,
         required: true,
         date: Date.now
