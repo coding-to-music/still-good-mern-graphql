@@ -24,9 +24,8 @@ const UserSchema = new Schema({
     itemCount:{
 
     },
-    saveItem:[
-        
-    ]
+    saveItem: []
+    
     
 });
 const User = model('User', UserSchema);
