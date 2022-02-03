@@ -3,7 +3,7 @@ const { User } = require('../models');
 const resolvers = {
   Query: {
     me: async () => {
-      return await User.find();
+      return await User.findOne();
     },
   },
   Mutation: {
