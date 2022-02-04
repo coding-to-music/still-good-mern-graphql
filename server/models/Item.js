@@ -28,6 +28,9 @@ const itemSchema = new Schema({
     quantity: {
         type: Number,
         default: 1
+    },
+    storageLocation: {
+        type: String
     }
 });
 

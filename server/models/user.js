@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
+const { Schema, model } = mongoose;
 
-const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 
 const UserSchema = new Schema({
@@ -8,7 +8,6 @@ const UserSchema = new Schema({
         type: String,
         required: true,
         trim: true
-
     },
     email: {
         type: String,
@@ -20,9 +19,7 @@ const UserSchema = new Schema({
         required: true,
         minlength: 7
     },
-
-    savedItems: []
-
+    saveItem: []
 });
 const User = model('User', UserSchema);
 
