@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { User, Item, StorageLocation } = require('../models');
+const { User, Item, storageLocation } = require('../models');
 
 db.once('open', async () => {
     // storageLocation = await StorageLocation.deleteMany();
@@ -47,7 +47,7 @@ db.once('open', async () => {
 
     // console.log('Item seeded');
 
-    user = await User.deleteMany();
+    await User.deleteMany();
 
     const user = await User.insertMany([
         {
