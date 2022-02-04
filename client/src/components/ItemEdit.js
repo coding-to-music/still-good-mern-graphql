@@ -16,6 +16,7 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
 
 function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
+  const addedDate = '2022-02-20';
   // // Generic onChange handler
   // function editField(event) {
   //   const { name, value } = event.target;
@@ -78,7 +79,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
           {/* Name Field */}
           <TextField
             name="name"
-            value={editedItem.name}
+            defaultValue={editedItem.name}
             size="small"
             label="Item"
             type="text"
@@ -95,7 +96,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
               {/* Quantity Field */}
               <TextField
                 name="quantity"
-                value={editedItem.quantity}
+                defaultValue={editedItem.quantity}
                 size="small"
                 label="Quantity"
                 type="number"
@@ -112,7 +113,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
               */}
               <TextField
                 name="unit"
-                value={editedItem.unit}
+                defaultValue={editedItem.unit}
                 size="small"
                 label="Unit"
                 type="text"
@@ -125,7 +126,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
           {/* Use By Field */}
           <TextField
             name="useByDate"
-            value={editedItem.useByDate}
+            defaultValue={editedItem.useByDate}
             size="small"
             label="Use by"
             type="date"
@@ -139,7 +140,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
           {/* Added On Field */}
           <TextField
             name="addedDate"
-            value={editedItem.addedDate}
+            defaultValue={editedItem.addedDate}
             size="small"
             label="Added on"
             type="date"

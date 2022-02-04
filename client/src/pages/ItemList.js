@@ -44,10 +44,10 @@ function ItemList() {
         {itemData.map(item => {
           return <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />;
         })}
+        <Fab onClick={handleAddItem} color="primary" aria-label="add" style={{ position: 'fixed bottom right' }}>
+          <AddIcon />
+        </Fab>
       </Stack>
-      <Fab onClick={handleAddItem} color="primary" aria-label="add" style={{ position: 'fixed bottom right' }}>
-        <AddIcon />
-      </Fab>
     </>
   );
 }
