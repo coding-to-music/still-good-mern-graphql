@@ -5,6 +5,7 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
 
 function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
+  
   // Generic onChange handler
   function editField(event) {
     const { name, value } = event.target;
@@ -36,7 +37,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
     }
 
     if(itemName && useByDate){
-      console.log(itemName, useByDate);
+      console.log(itemName);
     }
     // TODO useMutation saveItem
 
@@ -67,7 +68,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
         <Stack margin={2} spacing={2}>
           {/* Name Field */}
           <TextField
-            onChange={(e) => setItemName(e.target.value)}
+
             name="name"
             value={editedItem.name}
             size="small"
@@ -79,7 +80,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={editField}
+
           />
 
           <Grid container>
@@ -94,7 +95,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={editField}
+                
               />
             </Grid>
             <Grid item xs={5}>
@@ -112,13 +113,13 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
                 InputLabelProps={{
                   shrink: true,
                 }}
-                onChange={editField}
+                
               />
             </Grid>
           </Grid>
           {/* Use By Field */}
           <TextField
-            onChange={(e) => setUseByDate(e.target.value)}
+
             name="useByDate"
             value={editedItem.useByDate}
             size="small"
@@ -129,7 +130,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={editField}
+
           />
 
           {/* Added On Field */}
@@ -142,7 +143,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             InputLabelProps={{
               shrink: true,
             }}
-            onChange={editField}
+
           />
 
           {/* Storage Location Selector */}
@@ -154,7 +155,6 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             label="Stored where"
             size="small"
             value={editedItem.storageLocation ? editedItem.storageLocation : 'other'}
-            onChange={editField}
           >
             <MenuItem value="fridge">Fridge</MenuItem>
             <MenuItem value="freezer">Freezer</MenuItem>
