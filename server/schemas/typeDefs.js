@@ -5,24 +5,40 @@ type User {
   _id: ID
   email: String
   itemCount: Int
-  savedBooks: [Item]s
+  savedBooks: [Item]
 }
 type Item {
+  _id: ID
   categories: [String]
   storageLocation: String
-  addedDate: Date
-  exeriationDate: Date
   name: String
   quantity: Int
+  addedDate: String
+  expirationDate: String
+}
+type Auth {
+  token: ID!
+  user: User
+}
+
+type Query {
+  me: User
+  test: String
+  users: [User]
+  user(username: String!): User
+}
+
+type QuerySuper {
+  test: String
+}
+
+type Mutation { 
+  login(email: String!, password: String!): Auth
+  addUser(email: String!, password: String!): Auth
+  saveItem(_id: ID, categories: String!, storageLocation: String!, name: String, quantity: Int, addedDate: String!, expirationDate: String): Item
+  removeItem(_id: ID): Item
 }
 `;
 
-// module.exports = typeDefs;
-// QUERIES
-// me returns User type
 
-// MUTATIONS
-// login, accepts email, password, returns Auth(JWT)
-// addUser, accepts email, password, returns Auth
-// saveItem, accepts array of categories(strings), storage location(string), addedDate(date), experiationDate(date), name(string), quantity(int)
-// removeItem, accepts itemId(verifies it belongs to user)
+module.exports = typeDefs;
