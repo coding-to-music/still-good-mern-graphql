@@ -150,9 +150,6 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
           />
 
           {/* Storage Location Selector */}
-          {/* 
-          //TODO resolve controlled/uncontrolled object error 
-          */}
           <Select
             name="storageLocation"
             label="Stored where"
