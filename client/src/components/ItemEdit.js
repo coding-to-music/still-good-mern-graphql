@@ -16,7 +16,6 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
 
 function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
-  const addedDate = '2022-02-20';
   // // Generic onChange handler
   // function editField(event) {
   //   const { name, value } = event.target;

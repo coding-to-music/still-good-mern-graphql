@@ -1,10 +1,10 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { colorCardByDate } from '../utils/helpers';
-import { Box, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
+import { Box, Typography, Grid, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
+// import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 
 function SingleItem({ item, setDialogOpen, setEditedItem }) {
   // Edit item button handler
@@ -22,33 +22,29 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
       variant="outlined"
       sx={{
         p: 1,
-        marginBottom: 0.5,
-
-        flexGrow: 1,
+        width: '98%',
+        maxWidth: '900px',
         bgcolor: colorCardByDate(item.useByDate),
         border: '1px solid gray',
-        borderRadius: '5px',
+        borderRadius: '3px',
       }}
     >
       {/* Overall Grid*/}
       <Grid container alignItems="center">
-        {/* Text Column */}
-        <Grid item xs={10} alignItems="flex-start" justifyContent="space-between" container>
-          {/* Name, Quantity, Unit Row */}
-          <Grid container spacing={1} xs={12} sm={6} justifyContent="space-between" item>
-            {/* Item Name */}
-            <Grid item xs={9} sm={8}>
-              <Typography gutterBottom variant="subtitle1" textAlign="left" xs={10}>
-                {item.name}
-              </Typography>
-            </Grid>
+        {/* Text Items */}
+        <Grid item xs={10} sm={11} alignItems="flex-start" justifyContent="space-between" container>
+          {/* Item Name */}
+          <Grid item xs={9} sm={4}>
+            <Typography gutterBottom variant="subtitle1" textAlign="left" xs={10}>
+              {item.name}
+            </Typography>
+          </Grid>
 
-            {/* Quanity and Unit */}
-            <Grid item xs={3} sm={4}>
-              <Typography variant="body2" gutterBottom xs={1} textAlign="left">
-                {`${item.quantity} ${item.unit}`}
-              </Typography>
-            </Grid>
+          {/* Quanity and Unit */}
+          <Grid item xs={3} sm={2}>
+            <Typography variant="body2" gutterBottom xs={1} textAlign="left">
+              {`${item.quantity} ${item.unit}`}
+            </Typography>
           </Grid>
 
           {/* Use By Date */}
@@ -65,8 +61,9 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
             </Typography>
           </Grid>
         </Grid>
-        <Grid item xs={2} container justifyContent="flex-end">
-          {/* <ButtonGroup variant="contained" size="small"> */}
+
+        {/* Button Items */}
+        <Grid item xs={2} sm={1} container justifyContent="flex-end">
           {/* Edit Button */}
           <Grid item xs={12} sm={6}>
             <Tooltip title="Edit" placement="left">
@@ -103,7 +100,6 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
             <DinnerDiningIcon />
             </Button> 
           </Tooltip> */}
-          {/* </ButtonGroup> */}
         </Grid>
       </Grid>
     </Box>

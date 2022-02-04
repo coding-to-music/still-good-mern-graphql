@@ -28,7 +28,7 @@ function ItemList() {
 
   return (
     <>
-      <Stack margin={1}>
+      <Stack margin={2} alignItems="center">
         <ItemEdit
           dialogOpen={dialogOpen}
           setDialogOpen={setDialogOpen}
