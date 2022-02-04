@@ -38,7 +38,7 @@ Still Good is a product tracking tool, designed to remedy your wasteful habits o
 
 * Have a high-quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
-**View the application, here:** [Still-Good](LINK WILL GO HERE "Still-Good")
+**View the application, here:** [Still-Good](https://pacific-bayou-24755.herokuapp.com/)
 
 ## Instructions 
 
