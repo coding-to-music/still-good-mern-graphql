@@ -7,13 +7,13 @@ import DoDisturb from '@mui/icons-material/DoDisturb';
 function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
   
   // Generic onChange handler
-  function editField(event) {
-    const { name, value } = event.target;
-    setEditedItem({
-      ...editedItem,
-      [name]: value,
-    });
-  }
+  // function editField(event) {
+  //   const { name, value } = event.target;
+  //   setEditedItem({
+  //     ...editedItem,
+  //     [name]: value,
+  //   });
+  // }
 
   // TODO Create validation for required fields
   // Have been checking out this video for reference: https://www.youtube.com/watch?v=sTdt2cJS2dg
