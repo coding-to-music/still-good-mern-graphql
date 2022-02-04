@@ -1,19 +1,19 @@
 const db = require('../config/connection');
 const { Item, User } = require('../models');
 const { faker } = require('@faker-js/faker');
+const fs = require('fs');
+faker.seed(1123123123123123123123);
 db.once('open', async () => {
   await Item.deleteMany();
   await User.deleteMany();
-  const userData = [];
-  userData.push({email: "email@email.com",password: "password"});
+  var data = [];
   for (let i = 0; i < 50; i += 1) {
     const email = faker.internet.email();
     const password = faker.internet.password();
     
-    userData.push({email, password});
+    data.push({email, password});
   }
 
-  const createdUsers = await User.collection.insertMany(userData);
   const createdItems = []
   for (let i = 0; i < 150; i += 1) {
 
