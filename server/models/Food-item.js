@@ -1,31 +1,31 @@
-const {Schema, model} = require('mongoose');
-const{Schema} = mongoose;
+const { Schema, model } = require('mongoose');
+const { Schema } = mongoose;
 
 const foodItemSchema = new Schema({
-    id  :{
+    id: {
         type: String,
         required: true,
         trim: true
-        
+
     },
-    name:{
+    name: {
         type: String,
         required: true,
         unique: true
     },
-    category:{
+    category: {
         type: String,
         required: true,
         unique: true
     },
-    expiration:{
+    expiration: {
         type: String,
         required: true,
         date: Date.now
 
     },
-    
-    
+
+
 });
 const foodItem = model('foodItem', foodItemSchema);
 

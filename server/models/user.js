@@ -1,32 +1,32 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const{Schema} = mongoose;
+const { Schema } = mongoose;
 const bcrypt = require('bcrypt');
 
 const UserSchema = new Schema({
-    Username :{
+    Username: {
         type: String,
         required: true,
         trim: true
-        
+
     },
-    email:{
+    email: {
         type: String,
         required: true,
         unique: true
     },
-    password:{
+    password: {
         type: String,
         required: true,
         minlength: 7
     },
 
-    itemCount:{
+    itemCount: {
 
     },
     saveItem: []
-    
-    
+
+
 });
 const User = model('User', UserSchema);
 
