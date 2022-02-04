@@ -1,10 +1,10 @@
 const db = require('./connection');
-const { User, Item, StorageLocation } = require('../models');
+const { User, Item, storageLocation } = require('../models');
 
 db.once('open', async () => {
-    storageLocation = await StorageLocation.deleteMany();
+    await storageLocation.deleteMany();
 
-    const storageLocation = await StorageLocation.insertMany([
+    const storagelocation = await storageLocation.insertMany([
         { name: 'Fridge' },
         { name: 'Freezer' },
         { name: 'Pantry' },
@@ -12,32 +12,32 @@ db.once('open', async () => {
     ]);
     console.log('storageLocation seeded');
 
-    item = await Item.deleteMany();
+    await Item.deleteMany();
 
     const item = await Item.insertMany([
         {
-            category: 'Dry Food',
+            categories: 'Dry Food',
             dateAdded: "12-21-1999",
             expirationDate: "12-31-9999",
             name: "Twinky",
             quantity: 100
         },
         {
-            category: 'Essential to life',
+            categories: 'Essential to life',
             dateAdded: "2-3-2022",
             expirationDate: "2-27-2022",
             name: "Nestle Toll House Chocolate Chip Cookie Dough",
             quantity: 5
         },
         {
-            category: 'Veggies',
+            categories: 'Veggies',
             dateAdded: "2-1-2022",
             expirationDate: "2-10-2022",
             name: "Pre-Made Salad",
             quantity: 2
         },
         {
-            category: 'Dry Food',
+            categories: 'Dry Food',
             dateAdded: "10-1-2021",
             expirationDate: "2-3-2022",
             name: "Flour",

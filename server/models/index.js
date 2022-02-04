@@ -1,5 +1,5 @@
 const User = require('./User');
 const Item = require('./Item');
-const StorageLocation = require('./StorageLocation');
+const storageLocation = require('./StorageLocation');
 
-module.exports = { User, Item, StorageLocation };
+module.exports = { User, Item, storageLocation };
