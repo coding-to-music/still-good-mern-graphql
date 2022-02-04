@@ -8,10 +8,13 @@ type User {
   savedBooks: [Item]
 }
 type Item {
+  _id: ID
   categories: [String]
   storageLocation: String
   name: String
   quantity: Int
+  addedDate: String
+  expirationDate: String
 }
 type Auth {
   token: ID!
@@ -32,23 +35,10 @@ type QuerySuper {
 type Mutation { 
   login(email: String!, password: String!): Auth
   addUser(email: String!, password: String!): Auth
+  saveItem(_id: ID, categories: String!, storageLocation: String!, name: String, quantity: Int, addedDate: String!, expirationDate: String): Item
+  removeItem(_id: ID): Item
 }
-
-
 `;
 
-// addedDate: Date
-// exeriationDate: Date
-
-// thoughts(username: String): [Thought]
-// thought(_id: ID!): Thought
-
-// type Mutation {
-//   login($email: String!, $password: String!): jws
-//   addUser($email: String!, $password: String!): Auth
-// }
-
-// saveItem(accepts array of categories (strings), storage location (string), addedDate (date), experiationDate (date), name (string), quantity (int))
-// removeItem(accepts itemId (verifies it belongs to user))
 
 module.exports = typeDefs;
