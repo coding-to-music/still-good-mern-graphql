@@ -1,21 +1,21 @@
-const {Schema, model} = require('mongoose');
-const{Schema} = mongoose;
+const { Schema, model } = require('mongoose');
+const { Schema } = mongoose;
 
 const foodCategorySchema = new Schema({
-    id  :{
+    id: {
         type: String,
         required: true,
         trim: true
-        
+
     },
-    name:{
+    name: {
         type: String,
         required: true,
         unique: true
     },
-    
-    
-    
+
+
+
 });
 const foodCategory = model('foodCategory', foodCategorySchema);
 
