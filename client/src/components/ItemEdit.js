@@ -149,7 +149,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
           {/* 
           //TODO resolve controlled/uncontrolled object error 
           */}
-          <Select
+          {/* <Select
             name="storageLocation"
             label="Stored where"
             size="small"
@@ -160,7 +160,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
             <MenuItem value="freezer">Freezer</MenuItem>
             <MenuItem value="pantry">Pantry</MenuItem>
             <MenuItem value="other">Other</MenuItem>
-          </Select>
+          </Select> */}
 
           {/* Buttons */}
           <ButtonGroup variant="contained" fullWidth={true}>
