@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { colorCardByDate } from '../utils/helpers';
-import { Box, Paper, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
+import { Box, Typography, Grid, ButtonGroup, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
@@ -22,8 +22,15 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
   return (
     <Box
       variant="outlined"
-      // TODO make background colors less bold - probably through general theming
-      sx={{ p: 2, marginBottom: 0.5, maxWidth: 500, flexGrow: 1, bgcolor: colorCardByDate(item.useByDate) }}
+      sx={{
+        p: 1,
+        marginBottom: 0.5,
+        maxWidth: 500,
+        flexGrow: 1,
+        bgcolor: colorCardByDate(item.useByDate),
+        border: '1px solid gray',
+        borderRadius: '5px',
+      }}
     >
       {/* Overall Grid*/}
       <Grid container>
@@ -70,12 +77,12 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
               </Button>
             </Tooltip>
 
-            {/* Find Recipe Button */}
+            {/* Find Recipe Button
             <Tooltip title="Find Recipie" placement="left">
               <Button>
                 <DinnerDiningIcon />
-              </Button>
-            </Tooltip>
+              </Button> 
+            </Tooltip> */}
           </ButtonGroup>
         </Grid>
       </Grid>

@@ -35,7 +35,7 @@ function ItemList() {
           setEditedItem={setEditedItem}
           editedItem={editedItem}
         />
-        <Typography variant="h4">Item List</Typography>
+        <Typography variant="h5">My Goods</Typography>
 
         {/* Sort item array on render */}
         {console.log()}
