@@ -1,3 +1,4 @@
-// const User = require('./User');
+const User = require('./User');
+const storageLocation = require('./storageLocation');
 
-// module.exports = { User, };
+module.exports = { User, storageLocation };
