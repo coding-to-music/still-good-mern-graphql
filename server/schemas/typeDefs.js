@@ -28,10 +28,6 @@ type Query {
   user(username: String!): User
 }
 
-type QuerySuper {
-  test: String
-}
-
 type Mutation { 
   login(email: String!, password: String!): Auth
   addUser(email: String!, password: String!): Auth
