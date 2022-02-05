@@ -23,15 +23,22 @@ type Auth {
 
 type Query {
   me: User
-  test: String
-  users: [User]
-  user(username: String!): User
+}
+input SavedItemInput {
+  _id: ID
+  categories: [String]
+  storageLocation: String
+  name: String
+  quantity: Int
+  addedDate: String
+  expirationDate: String
 }
 
 type Mutation { 
   login(email: String!, password: String!): Auth
   addUser(email: String!, password: String!): Auth
-  saveItem(_id: ID, categories: String!, storageLocation: String!, name: String, quantity: Int, addedDate: String!, expirationDate: String): Item
+  saveItem(input: SavedItemInput): Item
+  updateItem(input: SavedItemInput): Item
   removeItem(_id: ID): Item
 }
 `;
