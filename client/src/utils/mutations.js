@@ -24,6 +24,19 @@ export const ADD_USER = gql `
   }
 `;
 
-// export const SAVE_ITEM = gql `
-//   mutation saveItem ()
-// `
+export const SAVE_ITEM = gql `
+  mutation saveItem ($input: SavedItemInput) {
+    saveItem (input: $input) {
+      _id
+      username
+      savedItems {
+        categories
+        storageLocation
+        addedDate
+        expirationDate
+        name
+        quantity
+      }
+    }
+  }
+`;
