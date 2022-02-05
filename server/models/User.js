@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
-
 const bcrypt = require('bcrypt');
 
 const UserSchema = new Schema({
@@ -20,8 +19,15 @@ const UserSchema = new Schema({
         minlength: 7
     },
     itemCount: {
+        type: Number,
+        default: 1
     },
-    saveItem: []
+    saveItem: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Item'
+        }
+    ]
 });
 const User = model('User', UserSchema);
 
