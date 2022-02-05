@@ -5,7 +5,7 @@ type User {
   _id: ID
   email: String
   itemCount: Int
-  savedBooks: [Item]
+  savedItems: [Item]
 }
 type Item {
   _id: ID
