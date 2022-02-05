@@ -39,6 +39,17 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    removeItem: async(parent, {_id}, context)=>{
+      if(context.user) {
+        const user = await User.findOneAndUpdate(
+          {_id: context.user._id},
+          {$pull:{saveItems:{_id}}},
+          {new: true}
+        )
+        return user 
+      }
+      throw new AuthenticationError('Incorrect credentials');
+    }
   }
 };
 
