@@ -37,7 +37,7 @@ db.once('open', async () => {
     const itemStorageLocation = faker.word.verb();
     const itemExpirationDate = faker.date.soon(15).toString();
     const itemQuantity = (Math.floor(Math.random() * 9) + 1);
-    const dateNow = new Date().toString();
+    const dateNow = faker.date.recent(3).toString();
 
     const item = {
       categories: category,
@@ -47,7 +47,7 @@ db.once('open', async () => {
       addedDate: dateNow,
       expirationDate: itemExpirationDate
     }
-    
+
     const createdItem = await Item.create(item);
 
     const updatedUser = await User.updateOne(
