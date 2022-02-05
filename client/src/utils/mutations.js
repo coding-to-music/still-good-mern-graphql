@@ -40,3 +40,21 @@ export const SAVE_ITEM = gql `
     }
   }
 `;
+
+export const REMOVE_ITEM = gql`
+  mutation removeItem ($_id: ID! ) {
+    removeItem(_id: $_id) {
+      _id
+      username
+      email
+      savedItems {
+        categories
+        storageLocation
+        addedDate
+        expirationDate
+        name
+        quantity
+      }
+    }
+  }
+`;
