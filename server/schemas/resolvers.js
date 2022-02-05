@@ -39,17 +39,31 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
+    
+    updateItem: async (parent, { input }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findByIdAndUpdate(
+          { _id: context.user._id },
+          { $push: { savedItems: input } },
+          { new: true }
+        );
+
+        return updatedUser;
+      }
+
+      throw new AuthenticationError('You need to be logged in!');
+    },
     removeItem: async(parent, {_id}, context)=>{
       if(context.user) {
         const user = await User.findOneAndUpdate(
           {_id: context.user._id},
-          {$pull:{saveItems:{_id}}},
+          {$pull:{savedItems:{_id}}},
           {new: true}
         )
         return user 
       }
       throw new AuthenticationError('Incorrect credentials');
-    }
+    },
   }
 };
 
