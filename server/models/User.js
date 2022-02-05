@@ -4,7 +4,7 @@ const { Schema, model } = mongoose;
 const bcrypt = require('bcrypt');
 
 const UserSchema = new Schema({
-    Username: {
+    username: {
         type: String,
         required: true,
         trim: true
@@ -19,9 +19,7 @@ const UserSchema = new Schema({
         required: true,
         minlength: 7
     },
-    itemCount: {
-    },
-    saveItem: []
+    saveItems: [itemSchema]
 });
 const User = model('User', UserSchema);
 

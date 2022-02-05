@@ -4,7 +4,7 @@ const { Schema, model } = mongoose;
 const storageLocationSchema = new Schema({
     id: {
         type: String,
-        required: true,
+        required: false,
         trim: true
     },
     name: {
