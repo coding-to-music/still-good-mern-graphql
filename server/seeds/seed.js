@@ -27,27 +27,30 @@ db.once('open', async () => {
     userIDsArray.push(userIDsObject[key]);
   }
 
-  const numberOfItems = 150;
+  const numberOfItems = foods.length;
 
-  // for (let i = 0; i < numberOfItems; i += 1) {
-  //   const randomFoodIndex = Math.floor(Math.random() * (numberOfItems - 1));
-  //   const randomUser = Math.floor(Math.random() * (numberOfUsers - 1));
-  //   const itemName = foods[randomFoodIndex];
-  //   const category = faker.word.noun();
-  //   const itemStorageLocation = faker.word.verb();
-  //   const itemExpirationDate = faker.date.soon(15).toString();
-  //   const itemQuantity = (Math.floor(Math.random() * 9) + 1);
-  //   const createdItem = await Item.create(
-  //     {$push: {categories: category}},
-  //     {storageLocation: itemStorageLocation},
-  //     {name: itemName},
-  //     {quantity: itemQuantity},
-  //     {expirationDate: itemExpirationDate}
-  //   );
-  //   const updatedUser = await User.updateOne(
-  //     {_id: userIDsArray[randomUser]},
-  //     {$push: {savedItems: createdItem._id}}
-  //   );
-  // }
+  for (let i = 0; i < numberOfItems; i += 1) {
+    const randomFoodIndex = Math.floor(Math.random() * (numberOfItems - 1));
+    const randomUser = Math.floor(Math.random() * (numberOfUsers - 1));
+    const itemName = foods[randomFoodIndex];
+    const category = faker.word.noun();
+    const itemStorageLocation = faker.word.verb();
+    const itemExpirationDate = faker.date.soon(15).toString();
+    const itemQuantity = (Math.floor(Math.random() * 9) + 1);
+    const dateNow = new Date().toString();
+    const item = {
+      categories: category,
+      storageLocation: itemStorageLocation,
+      name: itemName,
+      quantity: itemQuantity,
+      addedDate: dateNow,
+      expirationDate: itemExpirationDate
+    }
+    const createdItem = await Item.create(item);
+    const updatedUser = await User.updateOne(
+      {_id: userIDsArray[randomUser]},
+      {$push: {savedItems: createdItem._id}}
+    );
+  }
   process.exit();
 });
