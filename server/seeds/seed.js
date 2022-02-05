@@ -2,6 +2,8 @@ const db = require('../config/connection');
 const { Item, User } = require('../models');
 const { faker } = require('@faker-js/faker');
 const fs = require('fs');
+const foods = require('./foods.json').foods;
+
 faker.seed(1123123123123123123123);
 db.once('open', async () => {
   await Item.deleteMany();
@@ -15,8 +17,9 @@ db.once('open', async () => {
   }
 
   const createdItems = []
-  for (let i = 0; i < 150; i += 1) {
 
+  
+  for (let i = 0; i < 150; i += 1) {
     
     createdItems.push({});
   }
