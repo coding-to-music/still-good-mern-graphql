@@ -26,9 +26,18 @@ function ItemList() {
     setDialogOpen(true);
   }
 
+  const style = {
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 20,
+    left: 'auto',
+    position: 'fixed',
+};
+
   return (
     <>
-      <Stack margin={2} alignItems="center">
+      <Stack margin={2} marginBottom={10} alignItems="center">
         <ItemEdit
           dialogOpen={dialogOpen}
           setDialogOpen={setDialogOpen}
@@ -44,10 +53,10 @@ function ItemList() {
         {itemData.map(item => {
           return <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />;
         })}
-        <Fab onClick={handleAddItem} color="primary" aria-label="add" style={{ position: 'fixed bottom right' }}>
+      </Stack>
+        <Fab onClick={handleAddItem} color="primary" aria-label="add" style={style}>
           <AddIcon />
         </Fab>
-      </Stack>
     </>
   );
 }
