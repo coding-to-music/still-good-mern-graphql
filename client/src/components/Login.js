@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Stack, TextField, Button, Box } from '@mui/material';
+import { Stack, TextField, Button } from '@mui/material';
 import Auth from '../utils/auth';
 import { LOGIN } from '../utils/mutations';
 
@@ -8,23 +8,11 @@ function Login() {
   const [login] = useMutation(LOGIN);
   
   const [formState, setformState] = useState({
-    loginEmail: '',
-    loginPassword: '',
-    signupUsername: '',
-    signupEmail: '',
-    signupPassword: '',
-    signupPasswordConfirm: '',
+    email: '',
+    password: '',
   });
 
-  const [passwordMatchError, setPasswordMatchError] = useState(false)
 
-  function checkPasswordMatch() {
-    if (formState.signupPassword != formState.signupPasswordConfirm) {
-      setPasswordMatchError(true)
-    } else {
-      setPasswordMatchError(false)
-    }
-  }
 
   async function handleChange(event) {
     const { name, value } = event.target;
@@ -45,12 +33,10 @@ function Login() {
       console.log(e);
     }
   }
-  function handleSignup(event) {
-    event.preventDefault();
-  }
+
   return (
-    <>
-      <Box sx={{ backgroundColor: 'lightblue', margin: 'auto', padding: 1, borderRadius: 3, maxWidth: 500 }}>
+
+   
         <form id="login-form" onSubmit={handleLogin}>
           <Stack margin={2} spacing={2}>
             <TextField
@@ -64,7 +50,7 @@ function Login() {
               onChange={handleChange}
             ></TextField>
             <TextField
-              name="loginPassword"
+              name="password"
               label="Password"
               type="password"
               size="small"
@@ -80,8 +66,8 @@ function Login() {
         </form>
         
           
-      </Box>
-    </>
+
+
   );
 }
 

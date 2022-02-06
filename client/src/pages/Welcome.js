@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Tab, Tabs } from '@mui/material';
+import { Tab, Tabs, Box } from '@mui/material';
 
 import Login from '../components/Login'
 import Signup from '../components/Signup'
@@ -23,9 +23,10 @@ function Welcome() {
     <Tab label='Login'/>
 <Tab label='Sign Up' />
 </Tabs>
+<Box sx={{ backgroundColor: 'lightblue', margin: 'auto', padding: 1, borderRadius: 3, maxWidth: 500 }}>
 {selectedTab === 0 && <Login/>}
 {selectedTab === 1 && <Signup />}
-
+</Box>
     </>
   );
 }
