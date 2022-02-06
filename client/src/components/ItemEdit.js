@@ -28,6 +28,9 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
   // Item state for item name and useByDate
   const [itemNameError, setItemNameError] = useState(false);
   const [useByDateError, setUseByDateError] = useState(false);
+
+  // Check and submit form info
+  
   
   
   // Submit item handler
@@ -56,7 +59,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
       // TODO useMutation saveItem
       
       // TODO check if mutation was successful and then reset edited item to nothing and close the modal
-
+      
       // clear edited
       setEditedItem({});
       
@@ -65,17 +68,21 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
     }
   };
   // TODO Submit and add button handler
+  // TODO suggest refactoring out check and submit function to use for both buttons
   function handleSubmitAndAdd() {
-    // TODO useMutation saveItem
+ 
+    setDialogOpen(false)
+
     
-    // clear edited
-    setEditedItem({});
   }
   
   // Cancel button handler
   function handleEditCancel() {
-    setEditedItem({});
+    // reset validation errors
+    setItemNameError(false);
+    setUseByDateError(false);
     setDialogOpen(false);
+    
   }
   
   function handleClose() {
