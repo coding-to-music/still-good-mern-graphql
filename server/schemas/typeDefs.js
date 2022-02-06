@@ -33,15 +33,6 @@ input SavedItemInput {
   addedDate: String
   expirationDate: String
 }
-input SavedItemInput {
-  _id: ID
-  categories: [String]
-  storageLocation: String
-  name: String
-  quantity: Int
-  addedDate: String
-  expirationDate: String
-}
 input UpdateItemInput {
   _id: ID
   categories: [String]
