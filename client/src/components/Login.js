@@ -5,14 +5,12 @@ import Auth from '../utils/auth';
 import { LOGIN } from '../utils/mutations';
 
 function Login() {
-  const [login] = useMutation(LOGIN);
+  const [login, {error}] = useMutation(LOGIN);
   
   const [formState, setformState] = useState({
     email: '',
     password: '',
   });
-
-
 
   async function handleChange(event) {
     const { name, value } = event.target;
@@ -40,7 +38,7 @@ function Login() {
         <form id="login-form" onSubmit={handleLogin}>
           <Stack margin={2} spacing={2}>
             <TextField
-              name="loginEmail"
+              name="email"
               label="Email address"
               type="email"
               size="small"

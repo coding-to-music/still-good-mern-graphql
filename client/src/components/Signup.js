@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-
-import { Stack, TextField, Button } from '@mui/material';
+import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
+import {ADD_USER} from '../utils/mutations'
+import { Stack, TextField, Button } from '@mui/material';
 
-
-function Login() {
+function Signup() {
+  const [signup, {error}] = useMutation(ADD_USER);
    
   const [formState, setformState] = useState({
-
-    signupUsername: '',
-    signupEmail: '',
-    signupPassword: '',
-    signupPasswordConfirm: '',
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
   });
 
   const [passwordMatchError, setPasswordMatchError] = useState(false)
@@ -32,8 +32,17 @@ function Login() {
     });
   }
 
-  function handleSignup(event) {
+  async function handleSignup(event) {
     event.preventDefault();
+    try {
+      const mutationResponse = await signup({
+        variables: { email: formState.email, password: formState.password, username: formState.username },
+      });
+      const token = mutationResponse.data.login.token;
+      Auth.login(token);
+    } catch (e) {
+      console.log(e);
+    }
   }
   return (
      
@@ -89,4 +98,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Signup;
