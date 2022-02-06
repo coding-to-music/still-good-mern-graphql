@@ -5,7 +5,7 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from './components/Header';
 import Welcome from './pages/Welcome';
-import Login from './pages/Login';
+
 import ItemList from './pages/ItemList';
 import NoMatch from './pages/NoMatch';
 
@@ -36,7 +36,6 @@ function App() {
           <Header />
           <Routes>
             <Route exact path="/" element={<Welcome />} />
-            <Route exact path="/login" element={<Login />} />
             <Route exact path="/itemlist" element={<ItemList />} />
             <Route path="/*" element={<NoMatch />} />
           </Routes>

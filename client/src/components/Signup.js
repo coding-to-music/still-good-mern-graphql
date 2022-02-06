@@ -6,6 +6,7 @@ import { LOGIN } from '../utils/mutations';
 
 function Login() {
   const [login] = useMutation(LOGIN);
+  
   const [formState, setformState] = useState({
     loginEmail: '',
     loginPassword: '',
@@ -14,6 +15,16 @@ function Login() {
     signupPassword: '',
     signupPasswordConfirm: '',
   });
+
+  const [passwordMatchError, setPasswordMatchError] = useState(false)
+
+  function checkPasswordMatch() {
+    if (formState.signupPassword != formState.signupPasswordConfirm) {
+      setPasswordMatchError(true)
+    } else {
+      setPasswordMatchError(false)
+    }
+  }
 
   async function handleChange(event) {
     const { name, value } = event.target;
@@ -39,37 +50,9 @@ function Login() {
   }
   return (
     <>
-      <h2>Come on in!</h2>
+      
       <Box sx={{ backgroundColor: 'lightblue', margin: 'auto', padding: 1, borderRadius: 3, maxWidth: 500 }}>
-        <h4>Login</h4>
-        <form id="login-form" onSubmit={handleLogin}>
-          <Stack margin={2} spacing={2}>
-            <TextField
-              name="loginEmail"
-              label="Email address"
-              type="email"
-              size="small"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-            ></TextField>
-            <TextField
-              name="loginPassword"
-              label="Password"
-              type="password"
-              size="small"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-            ></TextField>
-            <Button variant="contained" type="submit">
-              Login
-            </Button>
-          </Stack>
-        </form>
-        <h4>Sign up</h4>
+     
         <form id="signup-form" onSubmit={handleSignup}>
           <Stack margin={2} spacing={2}>
             <TextField
@@ -111,6 +94,8 @@ function Login() {
                 shrink: true,
               }}
               onChange={handleChange}
+              onBlur={checkPasswordMatch}
+              error={passwordMatchError}
             ></TextField>
             <Button variant="contained" type="submit">
               Sign up
