@@ -15,7 +15,7 @@ const userSchema = new Schema(
             minlength: 7,
 
         },
-        saveItem: [
+        savedItems: [
             {
                 type: Schema.Types.ObjectId,
                 ref: 'Item'
@@ -45,7 +45,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 };
 
 userSchema.virtual('itemCount').get(function () {
-    return this.saveItem.length;
+    return this.savedItems.length;
 });
 
 const User = model('User', userSchema);

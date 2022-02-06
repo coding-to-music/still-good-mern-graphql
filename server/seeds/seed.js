@@ -52,7 +52,7 @@ db.once('open', async () => {
 
     const updatedUser = await User.updateOne(
       {_id: userIDsArray[randomUser]},
-      {$push: {saveItem: createdItem._id}}
+      {$push: {savedItems: createdItem._id}}
     );
 
   }

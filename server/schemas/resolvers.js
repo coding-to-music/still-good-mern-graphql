@@ -1,4 +1,4 @@
-const { User } = require('../models');
+const { User, Item } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -7,7 +7,7 @@ const resolvers = {
       if (context.user) {
         const userData = await User.findOne({ _id: context.user._id })
           .select('-__v -password')
-          .populate('Item');
+          .populate("savedItems")
 
         return userData;
       }
@@ -40,15 +40,16 @@ const resolvers = {
       return { token, user };
     },
     
-    saveItem: async (parent, { input }, context) => {
+    saveItem: async (parent,  input, context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
+        const item = await Item.create({...input})
+        await User.findByIdAndUpdate(
           { _id: context.user._id },
-          { $push: { savedItems: input } },
+          { $push: { savedItems: item._id } },
           { new: true }
         );
 
-        return updatedUser;
+        return item;
       }
 
       throw new AuthenticationError('You need to be logged in!');
@@ -59,7 +60,7 @@ const resolvers = {
         const updatedUser = await User.findByIdAndUpdate(
           { _id: context.user._id },
           { $push: { savedItems: input } },
-          { new: true }
+          { new: false }
         );
 
         return updatedUser;
@@ -82,26 +83,3 @@ const resolvers = {
 };
 
 module.exports = resolvers;
-
-// QUERIES
-// me returns User type
-// MUTATIONS
-// login, accepts email, password, returns Auth (JWT)
-// addUser, accepts email, password, returns Auth
-// saveItem, accepts array of categories (strings), storage location (string), addedDate (date), experiationDate (date), name (string), quantity (int)
-// removeItem, accepts itemId (verifies it belongs to user)
-// TYPEDEFS
-// type User {
-//     _id: ID
-//     email: String
-//     itemCount: Int
-//     savedBooks: [Item]s
-//   }
-// type Item {
-//     categories: [String]
-//     storageLocation: String
-//     addedDate: Date
-//     exeriationDate: Date
-//     name: String
-//     quantity: Int
-// }

@@ -28,26 +28,17 @@ input SavedItemInput {
   _id: ID
   categories: [String]
   storageLocation: String
-  name: String
+  name: String!
   quantity: Int
   addedDate: String
-  expirationDate: String
-}
-input UpdateItemInput {
-  _id: ID
-  categories: [String]
-  storageLocation: String
-  name: String
-  quantity: Int
-  addedDate: String
-  expirationDate: String
+  expirationDate: String!
 }
 
 type Mutation { 
   login(email: String!, password: String!): Auth
   addUser(email: String!, password: String!): Auth
   saveItem(input: SavedItemInput): Item
-  updateItem(input: UpdateItemInput): Item
+  updateItem(input: SavedItemInput): Item
   removeItem(_id: ID): Item
 }
 `;
