@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { Stack, TextField, Button, Typography } from '@mui/material';
 import Auth from '../utils/auth';
@@ -6,7 +6,7 @@ import { LOGIN } from '../utils/mutations';
 import { validateEmail } from '../utils/helpers';
 
 function Login() {
-  const [login, { error }] = useMutation(LOGIN);
+  const [login, { data, error }] = useMutation(LOGIN);
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState();
@@ -55,7 +55,8 @@ function Login() {
           }}
           error={passwordError}
         />
-        {error && <Typography variant="h4">{error}</Typography>}
+        {/* {error && <Typography variant="h4">{error}</Typography>} */}
+        {/* {data && <Typography variant="h4">{data}</Typography>} */}
         <Button variant="contained" type="submit">
           Login
         </Button>

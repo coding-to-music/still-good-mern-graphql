@@ -3,45 +3,30 @@ import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
 import { ADD_USER } from '../utils/mutations';
 import { Stack, TextField, Button } from '@mui/material';
+import { validateEmail } from '../utils/helpers';
 
 function Signup() {
   const [signup, { error }] = useMutation(ADD_USER);
-
-  const [formState, setformState] = useState({
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirm: '',
-  });
-
-  const [passwordMatchError, setPasswordMatchError] = useState(false);
-
-  function checkPasswordMatch() {
-    if (formState.signupPassword !== formState.signupPasswordConfirm) {
-      setPasswordMatchError(true);
-    } else {
-      setPasswordMatchError(false);
-    }
-  }
-
-  async function handleChange(event) {
-    const { name, value } = event.target;
-    setformState({
-      ...formState,
-      [name]: value,
-    });
-  }
+  const [username, setUsername] = useState();
+  const [usernameError, setUsernameError] = useState(false);
+  const [email, setEmail] = useState();
+  const [emailError, setEmailError] = useState(false);
+  const [password, setPassword] = useState();
+  const [passwordError, setPasswordError] = useState(false);
 
   async function handleSignup(event) {
     event.preventDefault();
-    try {
-      const mutationResponse = await signup({
-        variables: { email: formState.email, password: formState.password, username: formState.username },
-      });
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (e) {
-      console.log(e);
+
+    if (!usernameError && !emailError && !passwordError) {
+      try {
+        const mutationResponse = await signup({
+          variables: { email: email, password: password, username: username },
+        });
+        const token = mutationResponse.data.login.token;
+        Auth.login(token);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
   return (
@@ -52,31 +37,38 @@ function Signup() {
           label="Username"
           size="small"
           type="text"
-          InputLabelProps={{
-            shrink: true,
+          onChange={e => setUsername(e.target.value)}
+          onBlur={e => {
+            !e.target.value ? setUsernameError(true) : setUsernameError(false);
           }}
-          onChange={handleChange}
-        ></TextField>
+          error={usernameError}
+        />
         <TextField
           name="signupEmail"
           label="Email address"
           size="small"
           type="text"
-          InputLabelProps={{
-            shrink: true,
+          onChange={e => setEmail(e.target.value)}
+          onBlur={e => {
+            !e.target.value || !validateEmail(e.target.value) ? setEmailError(true) : setEmailError(false);
           }}
-          onChange={handleChange}
-        ></TextField>
+          error={emailError}
+        />
         <TextField
           name="signupPassword"
           label="Password"
           size="small"
           type="password"
-          InputLabelProps={{
-            shrink: true,
+          onChange={e => setPassword(e.target.value)}
+          onBlur={e => {
+            !e.target.value ? setPasswordError(true) : setPasswordError(false);
           }}
-          onChange={handleChange}
-        ></TextField>
+          error={passwordError}
+        />
+        {/* 
+        //TODO display login error
+        {error && <Typography variant="h4">{error}</Typography>} */}
+        {/* {data && <Typography variant="h4">{data}</Typography>} */}
         <Button variant="contained" type="submit">
           Sign up
         </Button>
