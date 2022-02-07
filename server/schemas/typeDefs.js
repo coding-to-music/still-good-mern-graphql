@@ -11,10 +11,10 @@ type Item {
   _id: ID
   categories: [String]
   storageLocation: String
-  name: String
+  name: String!
   quantity: Int
   addedDate: String
-  expirationDate: String
+  expirationDate: String!
 }
 type Auth {
   token: ID!
@@ -37,9 +37,9 @@ input SavedItemInput {
 type Mutation { 
   login(email: String!, password: String!): Auth
   addUser(email: String!, password: String!): Auth
-  saveItem(input: SavedItemInput): Item
-  updateItem(input: SavedItemInput): Item
-  removeItem(_id: ID): Item
+  saveItem(input: SavedItemInput!): Item
+  updateItem(_id: ID!, input: SavedItemInput!): Item
+  removeItem(_id: ID!): Item
 }
 `;
 
