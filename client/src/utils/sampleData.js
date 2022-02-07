@@ -1,11 +1,17 @@
+import dayJs from 'dayjs'
+const addedDate = '2022-02-12'
+const setUseByDate = (dayChangeAmount) => {
+  return dayJs().add(dayChangeAmount, 'day').format('YYYY-MM-DD')
+}
+
 export const sampleData = [
   {
     _id: 1,
     name: 'Apples',
     quantity: 3,
     unit: 'items',
-    useByDate: '2020-03-22',
-    addedDate: '2022-02-12',
+    useByDate: setUseByDate(-1),
+    addedDate: addedDate,
     storageLocation: 'fridge',
   },
   {
@@ -13,8 +19,8 @@ export const sampleData = [
     name: 'Ice Cream',
     quantity: 2,
     unit: '',
-    useByDate: '2022-02-03',
-    addedDate: '2022-02-12',
+    useByDate: setUseByDate(0),
+    addedDate: addedDate,
     storageLocation: 'freezer',
   },
   {
@@ -22,8 +28,8 @@ export const sampleData = [
     name: 'Can of Green Beans',
     quantity: 6,
     unit: 'cup',
-    useByDate: '2022-02-04',
-    addedDate: '2022-02-12',
+    useByDate: setUseByDate(1),
+    addedDate: addedDate,
     storageLocation: 'pantry',
   },
   {
@@ -31,8 +37,8 @@ export const sampleData = [
     name: 'Bread',
     quantity: 10,
     unit: 'slices',
-    useByDate: '2022-02-05',
-    addedDate: '2022-02-12',
+    useByDate: setUseByDate(2),
+    addedDate: addedDate,
     storageLocation: 'pantry',
   },
   {
@@ -40,8 +46,8 @@ export const sampleData = [
     name: 'Milk',
     quantity: 1,
     unit: 'quart',
-    useByDate: '2022-02-07',
-    addedDate: '2022-02-12',
+    useByDate: setUseByDate(3),
+    addedDate: addedDate,
     storageLocation: 'fridge',
   },
   {
@@ -49,8 +55,8 @@ export const sampleData = [
     name: 'Lettuce',
     quantity: '',
     unit: '',
-    useByDate: '2022-02-15',
-    addedDate: '2022-02-12',
+    useByDate: setUseByDate(4),
+    addedDate: addedDate,
     storageLocation: 'fridge',
   },
 ];
