@@ -29,7 +29,7 @@ type Mutation {
   login(email: String!, password: String!): Auth
   addUser(email: String!, password: String!): Auth
   saveItem(categories: [String], storageLocation: String, name: String!, quantity: Int, addedDate: String, expirationDate: String!): Item
-  updateItem(categories: [String], storageLocation: String, name: String!, quantity: Int, addedDate: String, expirationDate: String!): Item
+  updateItem(_id: ID!, categories: [String], storageLocation: String, name: String!, quantity: Int, addedDate: String, expirationDate: String!): Item
   removeItem(_id: ID!): Item
 }
 `;
