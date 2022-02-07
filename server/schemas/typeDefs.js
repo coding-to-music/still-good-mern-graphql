@@ -24,21 +24,12 @@ type Auth {
 type Query {
   me: User
 }
-input SavedItemInput {
-  _id: ID
-  categories: [String]
-  storageLocation: String
-  name: String!
-  quantity: Int
-  addedDate: String
-  expirationDate: String!
-}
 
 type Mutation { 
   login(email: String!, password: String!): Auth
   addUser(email: String!, password: String!): Auth
-  saveItem(input: SavedItemInput!): Item
-  updateItem(_id: ID!, input: SavedItemInput!): Item
+  saveItem(categories: [String], storageLocation: String, name: String!, quantity: Int, addedDate: String, expirationDate: String!): Item
+  updateItem(categories: [String], storageLocation: String, name: String!, quantity: Int, addedDate: String, expirationDate: String!): Item
   removeItem(_id: ID!): Item
 }
 `;

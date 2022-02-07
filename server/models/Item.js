@@ -11,7 +11,6 @@ const itemSchema = new Schema({
     ],
     storageLocation: {
         type: String,
-        required: true,
         trim: true
     },
     addedDate: {
