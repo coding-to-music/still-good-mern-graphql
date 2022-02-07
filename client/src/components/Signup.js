@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
-import {ADD_USER} from '../utils/mutations'
+import { ADD_USER } from '../utils/mutations';
 import { Stack, TextField, Button } from '@mui/material';
 
 function Signup() {
-  const [signup, {error}] = useMutation(ADD_USER);
-   
+  const [signup, { error }] = useMutation(ADD_USER);
+
   const [formState, setformState] = useState({
     username: '',
     email: '',
@@ -14,13 +14,13 @@ function Signup() {
     passwordConfirm: '',
   });
 
-  const [passwordMatchError, setPasswordMatchError] = useState(false)
+  const [passwordMatchError, setPasswordMatchError] = useState(false);
 
   function checkPasswordMatch() {
     if (formState.signupPassword !== formState.signupPasswordConfirm) {
-      setPasswordMatchError(true)
+      setPasswordMatchError(true);
     } else {
-      setPasswordMatchError(false)
+      setPasswordMatchError(false);
     }
   }
 
@@ -45,56 +45,43 @@ function Signup() {
     }
   }
   return (
-     
-        <form id="signup-form" onSubmit={handleSignup}>
-          <Stack margin={2} spacing={2}>
-            <TextField
-              name="signupUsername"
-              label="Username"
-              size="small"
-              type="text"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-            ></TextField>
-            <TextField
-              name="signupEmail"
-              label="Email address"
-              size="small"
-              type="text"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-            ></TextField>
-            <TextField
-              name="signupPassword"
-              label="Password"
-              size="small"
-              type="password"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-            ></TextField>
-            <TextField
-              name="signupPasswordConfirm"
-              label="Confirm password"
-              size="small"
-              type="password"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-              onBlur={checkPasswordMatch}
-              error={passwordMatchError}
-            ></TextField>
-            <Button variant="contained" type="submit">
-              Sign up
-            </Button>
-          </Stack>
-        </form>
+    <form id="signup-form" onSubmit={handleSignup}>
+      <Stack margin={2} spacing={2}>
+        <TextField
+          name="signupUsername"
+          label="Username"
+          size="small"
+          type="text"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        ></TextField>
+        <TextField
+          name="signupEmail"
+          label="Email address"
+          size="small"
+          type="text"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        ></TextField>
+        <TextField
+          name="signupPassword"
+          label="Password"
+          size="small"
+          type="password"
+          InputLabelProps={{
+            shrink: true,
+          }}
+          onChange={handleChange}
+        ></TextField>
+        <Button variant="contained" type="submit">
+          Sign up
+        </Button>
+      </Stack>
+    </form>
   );
 }
 

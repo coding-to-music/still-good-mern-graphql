@@ -36,3 +36,10 @@ export function colorCardByDate(useByDate) {
   }
   return STILL_GOOD;
 }
+
+export function validateEmail(email) {
+  if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    return true;
+  }
+  return false;
+}

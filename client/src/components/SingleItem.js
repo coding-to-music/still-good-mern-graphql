@@ -4,9 +4,12 @@ import { colorCardByDate } from '../utils/helpers';
 import { Box, Typography, Grid, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-// import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
+import { useMutation } from '@apollo/client';
+import { REMOVE_ITEM } from '../utils/mutations';
 
 function SingleItem({ item, setDialogOpen, setEditedItem }) {
+  const [removeItem, { error }] = useMutation(REMOVE_ITEM);
+
   // Edit item button handler
   function handleEditItem() {
     // Set item to be edited in modal
@@ -15,7 +18,10 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
     setDialogOpen(true);
   }
 
-  // TODO Delete button handler
+  // Delete item button handler
+  function handleDeleteButton() {
+    removeItem(item._id);
+  }
 
   return (
     <Box
@@ -80,26 +86,17 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
 
           {/* Delete Button */}
           <Grid item xs={12} sm={6}>
-            <Tooltip
-              title="Delete"
-              placement="left"
-              variant="contained"
-              size="small"
-              style={{ maxWidth: '30px', minWidth: '30px' }}
-            >
-              <Button>
+            <Tooltip title="Delete" placement="left">
+              <Button
+                onClick={handleDeleteButton}
+                variant="contained"
+                size="small"
+                style={{ maxWidth: '30px', minWidth: '30px' }}
+              >
                 <DeleteIcon />
               </Button>
             </Tooltip>
           </Grid>
-
-          {/* Find Recipe Button
-            // TODO ?? recipe search handler ??
-            <Tooltip title="Find Recipie" placement="left">
-            <Button>
-            <DinnerDiningIcon />
-            </Button> 
-          </Tooltip> */}
         </Grid>
       </Grid>
     </Box>

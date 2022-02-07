@@ -1,71 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/client';
-import { Stack, TextField, Button } from '@mui/material';
+import { Stack, TextField, Button, Typography } from '@mui/material';
 import Auth from '../utils/auth';
 import { LOGIN } from '../utils/mutations';
+import { validateEmail } from '../utils/helpers';
 
 function Login() {
-  const [login, {error}] = useMutation(LOGIN);
-  
-  const [formState, setformState] = useState({
-    email: '',
-    password: '',
-  });
+  const [login, { error }] = useMutation(LOGIN);
+  const [email, setEmail] = useState();
+  const [emailError, setEmailError] = useState(false);
+  const [password, setPassword] = useState();
+  const [passwordError, setPasswordError] = useState(false);
 
-  async function handleChange(event) {
-    const { name, value } = event.target;
-    setformState({
-      ...formState,
-      [name]: value,
-    });
-  }
   async function handleLogin(event) {
     event.preventDefault();
-    try {
-      const mutationResponse = await login({
-        variables: { email: formState.email, password: formState.password },
-      });
-      const token = mutationResponse.data.login.token;
-      Auth.login(token);
-    } catch (e) {
-      console.log(e);
+
+    if (!passwordError && !emailError) {
+      try {
+        const mutationResponse = await login({
+          variables: { email: email, password: password },
+        });
+        const token = mutationResponse.data.login.token;
+        Auth.login(token);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 
   return (
-
-   
-        <form id="login-form" onSubmit={handleLogin}>
-          <Stack margin={2} spacing={2}>
-            <TextField
-              name="email"
-              label="Email address"
-              type="email"
-              size="small"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-            ></TextField>
-            <TextField
-              name="password"
-              label="Password"
-              type="password"
-              size="small"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              onChange={handleChange}
-            ></TextField>
-            <Button variant="contained" type="submit">
-              Login
-            </Button>
-          </Stack>
-        </form>
-        
-          
-
-
+    <form noValidate autoComplete="off" id="login-form" onSubmit={handleLogin}>
+      <Stack margin={2} spacing={2}>
+        <TextField
+          name="email"
+          label="Email address"
+          type="email"
+          size="small"
+          required
+          onChange={e => setEmail(e.target.value)}
+          onBlur={e => {
+            !validateEmail(e.target.value) || !e.target.value ? setEmailError(true) : setEmailError(false);
+          }}
+          error={emailError}
+        />
+        <TextField
+          name="password"
+          label="Password"
+          type="password"
+          size="small"
+          required
+          onChange={e => setPassword(e.target.value)}
+          onBlur={e => {
+            !e.target.value ? setPasswordError(true) : setPasswordError(false);
+          }}
+          error={passwordError}
+        />
+        {error && <Typography variant="h4">{error}</Typography>}
+        <Button variant="contained" type="submit">
+          Login
+        </Button>
+      </Stack>
+    </form>
   );
 }
 
