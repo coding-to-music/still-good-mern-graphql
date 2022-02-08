@@ -1,6 +1,6 @@
 const { User, Item } = require('../models');
 const { signToken } = require('../utils/auth');
-const { AuthenticationError, UserInputError } = require('apollo-server-express');
+const { AuthenticationError, UserInputError, ApolloError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     // Query logged in user's data
@@ -58,12 +58,12 @@ const resolvers = {
       debugger;
       if (context.user) {
         if (!input._id) {
-          throw new UserInputError('Need an ID to update an item');
+          throw new ApolloError('Need an ID to update an item');
         }
         const {_id, ...inputExceptId} = input;
         const item = await Item.findByIdAndDelete({_id});
         if (!item) {
-          throw new UserInputError('invalid ID')
+          throw new ApolloError('invalid ID');
         }
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
