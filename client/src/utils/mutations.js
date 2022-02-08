@@ -26,16 +26,12 @@ export const ADD_USER = gql`
 export const SAVE_ITEM = gql`
   mutation saveItem($input: SavedItemInput) {
     saveItem(input: $input) {
-      _id
-      username
-      savedItems {
-        categories
-        storageLocation
-        addedDate
-        expirationDate
-        name
-        quantity
-      }
+      categories
+      storageLocation
+      addedDate
+      useByDate
+      name
+      quantity
     }
   }
 `;
@@ -49,7 +45,7 @@ export const UPDATE_ITEM = gql`
         categories
         storageLocation
         addedDate
-        expirationDate
+        useByDate
         name
         quantity
       }
@@ -67,7 +63,7 @@ export const REMOVE_ITEM = gql`
         categories
         storageLocation
         addedDate
-        expirationDate
+        useByDate
         name
         quantity
       }

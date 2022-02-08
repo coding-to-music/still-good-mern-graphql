@@ -1,36 +1,34 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const dayjs = require('dayjs');
 
 const itemSchema = new Schema({
-    categories: [
-        {
-            type: String,
-            required: true,
-            trim: true
-        }
-    ],
-    storageLocation: {
-        type: String,
-        required: true,
-        trim: true
+  categories: [
+    {
+      type: String,
+      trim: true,
     },
-    addedDate: {
-        type: Date,
-        default: Date.now
-    },
-    expirationDate: {
-        type: Date,
-        required: true
-    },
-    name: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    quantity: {
-        type: Number,
-        default: 1
-    }
+  ],
+  storageLocation: {
+    type: String,
+    trim: true,
+  },
+  addedDate: {
+    type: String,
+    default: dayjs().format('YYYY-MM-DD'),
+  },
+  useByDate: {
+    type: String,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  quantity: {
+    type: Number,
+  },
 });
 
 const Item = mongoose.model('Item', itemSchema);

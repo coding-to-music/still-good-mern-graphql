@@ -7,10 +7,11 @@ export const GET_ME = gql`
 
       email
       savedItems {
+        _id
         categories
         storageLocation
         addedDate
-        expirationDate
+        useByDate
         name
         quantity
       }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@apollo/client';
 import { Stack, Typography, Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -9,9 +9,14 @@ import { sortDate } from '../utils/helpers';
 import { GET_ME } from '../utils/queries';
 
 function ItemList() {
+  // Pull in loggedIn user's data
   const { loading, data } = useQuery(GET_ME);
-  const userData = data?.savedItems;
-  console.log(userData);
+  let userData = [];
+  if (data) {
+    console.log(data);
+    userData = sortDate(data?.me.savedItems);
+  }
+  useEffect(() => {}, [loading, data]);
 
   // Set which item will be edited in ItemEdit modal
   const [editedItem, setEditedItem] = useState({});
@@ -20,7 +25,7 @@ function ItemList() {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   // TODO replace test data with useQuery to pull in user's items
-  const [itemData] = useState(userData ? sortDate(userData) : '');
+  // const [itemData] = useState(userData ? sortDate(userData) : '');
 
   // Add Item(s) button handler
   function handleAddItem() {
@@ -30,8 +35,10 @@ function ItemList() {
     setDialogOpen(true);
   }
 
+  // Display message while data is loading
   if (loading) return <Typography variant="h4">Loading</Typography>;
 
+  // Main render
   return (
     <>
       <Stack margin={2} marginBottom={10} alignItems="center">
@@ -48,7 +55,7 @@ function ItemList() {
 
         {/* Map items into cards */}
         {userData ? (
-          sortDate(userData).map(item => {
+          userData.map(item => {
             return (
               <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />
             );
