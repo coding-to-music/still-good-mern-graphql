@@ -26,6 +26,7 @@ export const ADD_USER = gql`
 export const SAVE_ITEM = gql`
   mutation saveItem($input: SavedItemInput) {
     saveItem(input: $input) {
+      _id
       categories
       storageLocation
       addedDate

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, forceUpdate } from 'react';
 import {
   Button,
   ButtonGroup,
@@ -14,12 +14,8 @@ import {
 import TaskAlt from '@mui/icons-material/TaskAlt';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
-import { useMutation } from '@apollo/client';
-import { SAVE_ITEM } from '../utils/mutations';
 
-function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemData, setItemData }) {
-  const [saveItem] = useMutation(SAVE_ITEM);
-
+function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemData, setItemData, saveItem }) {
   // Generic onChange handler
   function editField(event) {
     const { name, value } = event.target;
@@ -34,7 +30,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
   const [useByDateError, setUseByDateError] = useState(false);
 
   // Submit item handler
-  const handleFormSubmit = event => {
+  const handleFormSubmit = async event => {
     event.preventDefault();
 
     // reset validation errors
@@ -52,12 +48,9 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
     // If required fields are entered send data and reset form
     if (editedItem.name && editedItem.useByDate) {
       // reset validation errors
-      setItemNameError(false);
-      setUseByDateError(false);
-      console.log(editedItem);
-      saveItem({ variables: { input: editedItem } });
-      setItemData([...itemData, editedItem]);
-      // TODO check if mutation was successful and then reset edited item to nothing and close the modal
+
+      const { data } = await saveItem({ variables: { input: editedItem } });
+      setItemData([...itemData, data.saveItem]);
 
       // clear edited
       setEditedItem({});
