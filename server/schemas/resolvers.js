@@ -1,6 +1,6 @@
 const { User, Item } = require('../models');
 const { signToken } = require('../utils/auth');
-
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -72,7 +72,7 @@ const resolvers = {
           {new:false}
         )
         if (!item) {
-          throw new UnknownItemError("item does not exist");
+          throw new UserInputError("item does not exist");
           
         }
         return item; 
