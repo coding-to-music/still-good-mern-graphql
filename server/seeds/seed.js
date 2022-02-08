@@ -45,8 +45,8 @@ db.once('open', async () => {
       storageLocation: itemStorageLocation,
       name: itemName,
       quantity: itemQuantity,
-      addedDate: dayjs(dateNow).format('YYYY-MM-DD'),
-      useByDate: dayjs(itemExpirationDate).format('YYYY-MM-DD'),
+      addedDate: dayjs(dateNow).format('MM/DD/YY'),
+      useByDate: dayjs(itemExpirationDate).format('MM/DD/YY'),
     };
 
     const createdItem = await Item.create(item);
