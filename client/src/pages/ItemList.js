@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { Stack, Typography, Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SingleItem from '../components/SingleItem';
@@ -7,25 +7,25 @@ import ItemEdit from '../components/ItemEdit';
 
 import { sortDate } from '../utils/helpers';
 import { GET_ME } from '../utils/queries';
+import { SAVE_ITEM, UPDATE_ITEM, REMOVE_ITEM } from '../utils/mutations';
 
 function ItemList() {
   // Pull in loggedIn user's data
   const { loading, data } = useQuery(GET_ME);
-  let userData = [];
-  if (data) {
-    console.log(data);
-    userData = sortDate(data?.me.savedItems);
-  }
-  useEffect(() => {}, [loading, data]);
+  const [saveItem] = useMutation(SAVE_ITEM, { refetchQueries: [{ query: GET_ME }] });
+  const [updateItem] = useMutation(UPDATE_ITEM, { refetchQueries: [{ query: GET_ME }] });
+  const [deleteItem] = useMutation(REMOVE_ITEM, { refetchQueries: [{ query: GET_ME }] });
 
-  // Set which item will be edited in ItemEdit modal
-  const [editedItem, setEditedItem] = useState({});
+  const [itemData, setItemData] = useState([]);
 
   // Turn edit modal on and off
   const [dialogOpen, setDialogOpen] = useState(false);
+  useEffect(() => {
+    setItemData(data?.me.savedItems);
+  }, [itemData, data]);
 
-  // TODO replace test data with useQuery to pull in user's items
-  // const [itemData] = useState(userData ? sortDate(userData) : '');
+  // Set which item will be edited in ItemEdit modal
+  const [editedItem, setEditedItem] = useState({});
 
   // Add Item(s) button handler
   function handleAddItem() {
@@ -47,18 +47,20 @@ function ItemList() {
           setDialogOpen={setDialogOpen}
           setEditedItem={setEditedItem}
           editedItem={editedItem}
+          itemData={itemData}
+          setItemData={setItemData}
+          saveItem={saveItem}
         />
         <Typography variant="h5">My Goods</Typography>
 
-        {/* Sort item array on render */}
-        {console.log()}
-
         {/* Map items into cards */}
-        {userData ? (
-          userData.map(item => {
-            return (
-              <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />
-            );
+        {itemData ? (
+          sortDate(itemData).map(item => {
+            if (item._id) {
+              return (
+                <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />
+              );
+            }
           })
         ) : (
           <Typography variant="h4">Add some goods!</Typography>
