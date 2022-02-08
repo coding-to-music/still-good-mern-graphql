@@ -49,7 +49,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
           {/* Quanity and Unit */}
           <Grid item xs={3} sm={2}>
             <Typography variant="body2" gutterBottom xs={1} textAlign="left">
-              {`${item.quantity} ${item.unit}`}
+              {`${item.quantity || ''} ${item.unit || ''}`}
             </Typography>
           </Grid>
 
@@ -60,10 +60,17 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
             </Typography>
           </Grid>
 
+          {/* Added on Date */}
+          <Grid item xs={12} sm={3}>
+            <Typography variant="body2" gutterBottom textAlign="left">
+              Added on: {dayjs(item.addedDate).format('MM/DD/YY') || ''}
+            </Typography>
+          </Grid>
+
           {/* Storage Location */}
           <Grid item xs={12} sm={3}>
             <Typography variant="body2" color="text.secondary" textAlign="left">
-              Stored: {item.storageLocation}
+              Stored: {item.storageLocation || 'Other'}
             </Typography>
           </Grid>
         </Grid>
