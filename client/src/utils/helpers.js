@@ -1,9 +1,10 @@
 import dayJs from 'dayjs';
 
 export function sortDate(itemArray) {
-  console.log(itemArray);
+  const arrayToSort = [...itemArray];
+  console.log('pre-sort', arrayToSort);
 
-  itemArray.slice().sort((a, b) => {
+  arrayToSort.sort((a, b) => {
     if (a.useByDate < b.useByDate) {
       return -1;
     }
@@ -13,7 +14,8 @@ export function sortDate(itemArray) {
 
     return 0;
   });
-  return itemArray;
+  console.log('post-sort', arrayToSort);
+  return arrayToSort;
 }
 
 export function colorCardByDate(useByDate) {
