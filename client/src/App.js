@@ -10,7 +10,7 @@ import ItemList from './pages/ItemList';
 import NoMatch from './pages/NoMatch';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -29,7 +29,6 @@ const client = new ApolloClient({
 });
 
 function App() {
-
   return (
     <div className="App">
       <ApolloProvider client={client}>

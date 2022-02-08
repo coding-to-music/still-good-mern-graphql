@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { Stack, TextField, Button, Typography } from '@mui/material';
+import { Stack, TextField, Button } from '@mui/material';
 import Auth from '../utils/auth';
 import { LOGIN } from '../utils/mutations';
 import { validateEmail } from '../utils/helpers';
@@ -55,7 +55,9 @@ function Login() {
           }}
           error={passwordError}
         />
-        {/* {error && <Typography variant="h4">{error}</Typography>} */}
+        {/* 
+        //TODO display login error
+        {error && <Typography variant="h4">{error}</Typography>} */}
         {/* {data && <Typography variant="h4">{data}</Typography>} */}
         <Button variant="contained" type="submit">
           Login

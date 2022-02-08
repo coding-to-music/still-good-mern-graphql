@@ -11,22 +11,21 @@ export const LOGIN = gql`
   }
 `;
 
-export const ADD_USER = gql `
-  mutation addUser($username: String!,$email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+export const ADD_USER = gql`
+  mutation addUser($email: String!, $password: String!) {
+    addUser(email: $email, password: $password) {
       token
       user {
         _id
-        username
         email
       }
     }
   }
 `;
 
-export const SAVE_ITEM = gql `
-  mutation saveItem ($input: SavedItemInput) {
-    saveItem (input: $input) {
+export const SAVE_ITEM = gql`
+  mutation saveItem($input: SavedItemInput) {
+    saveItem(input: $input) {
       _id
       username
       savedItems {
@@ -41,9 +40,9 @@ export const SAVE_ITEM = gql `
   }
 `;
 
-export const UPDATE_ITEM = gql `
-  mutation updateItem ($input: UpdateItemInput) {
-    updateItem (input: $input) {
+export const UPDATE_ITEM = gql`
+  mutation updateItem($input: UpdateItemInput) {
+    updateItem(input: $input) {
       _id
       username
       savedItems {
@@ -59,7 +58,7 @@ export const UPDATE_ITEM = gql `
 `;
 
 export const REMOVE_ITEM = gql`
-  mutation removeItem ($_id: ID! ) {
+  mutation removeItem($_id: ID!) {
     removeItem(_id: $_id) {
       _id
       username

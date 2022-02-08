@@ -7,8 +7,7 @@ import { validateEmail } from '../utils/helpers';
 
 function Signup() {
   const [signup, { error }] = useMutation(ADD_USER);
-  const [username, setUsername] = useState();
-  const [usernameError, setUsernameError] = useState(false);
+
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState();
@@ -17,10 +16,10 @@ function Signup() {
   async function handleSignup(event) {
     event.preventDefault();
 
-    if (!usernameError && !emailError && !passwordError) {
+    if (!emailError && !passwordError) {
       try {
         const mutationResponse = await signup({
-          variables: { email: email, password: password, username: username },
+          variables: { email: email, password: password },
         });
         const token = mutationResponse.data.login.token;
         Auth.login(token);
@@ -32,17 +31,6 @@ function Signup() {
   return (
     <form id="signup-form" onSubmit={handleSignup}>
       <Stack margin={2} spacing={2}>
-        <TextField
-          name="signupUsername"
-          label="Username"
-          size="small"
-          type="text"
-          onChange={e => setUsername(e.target.value)}
-          onBlur={e => {
-            !e.target.value ? setUsernameError(true) : setUsernameError(false);
-          }}
-          error={usernameError}
-        />
         <TextField
           name="signupEmail"
           label="Email address"
