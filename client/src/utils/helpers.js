@@ -2,8 +2,6 @@ import dayJs from 'dayjs';
 
 export function sortDate(itemArray) {
   const arrayToSort = [...itemArray];
-  console.log('pre-sort', arrayToSort);
-
   arrayToSort.sort((a, b) => {
     if (a.useByDate < b.useByDate) {
       return -1;
@@ -11,10 +9,8 @@ export function sortDate(itemArray) {
     if (a.useByDate > b.useByDate) {
       return 1;
     }
-
     return 0;
   });
-  console.log('post-sort', arrayToSort);
   return arrayToSort;
 }
 

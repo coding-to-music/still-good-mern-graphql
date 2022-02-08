@@ -9,9 +9,13 @@ import { sortDate } from '../utils/helpers';
 import { GET_ME } from '../utils/queries';
 
 function ItemList() {
-  const { loading, data } = useQuery(GET_ME);
   // Pull in loggedIn user's data
-  let userData = [];
+  const { loading, data } = useQuery(GET_ME);
+  const [itemData, setItemData] = useState([]);
+
+  useEffect(() => {
+    setItemData(data?.me.savedItems);
+  }, [data]);
 
   // Set which item will be edited in ItemEdit modal
   const [editedItem, setEditedItem] = useState({});
@@ -42,16 +46,14 @@ function ItemList() {
           setDialogOpen={setDialogOpen}
           setEditedItem={setEditedItem}
           editedItem={editedItem}
+          itemData={itemData}
+          setItemData={setItemData}
         />
         <Typography variant="h5">My Goods</Typography>
 
-        {/* 
-        // TODO Sort item array on render 
-        */}
-
         {/* Map items into cards */}
-        {data.me.savedItems ? (
-          sortDate(data.me.savedItems).map(item => {
+        {itemData ? (
+          sortDate(itemData).map(item => {
             return (
               <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />
             );

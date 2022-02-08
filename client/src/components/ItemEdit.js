@@ -17,7 +17,7 @@ import DoDisturb from '@mui/icons-material/DoDisturb';
 import { useMutation } from '@apollo/client';
 import { SAVE_ITEM } from '../utils/mutations';
 
-function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
+function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemData, setItemData }) {
   const [saveItem] = useMutation(SAVE_ITEM);
 
   // Generic onChange handler
@@ -40,12 +40,10 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
     // reset validation errors
     setItemNameError(false);
     setUseByDateError(false);
-
     // Show error if no name entered
     if (!editedItem.name) {
       setItemNameError(true);
     }
-
     // Show error if no useByDate entered
     if (!editedItem.useByDate) {
       setUseByDateError(true);
@@ -58,6 +56,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen }) {
       setUseByDateError(false);
       console.log(editedItem);
       saveItem({ variables: { input: editedItem } });
+      setItemData([...itemData, editedItem]);
       // TODO check if mutation was successful and then reset edited item to nothing and close the modal
 
       // clear edited
