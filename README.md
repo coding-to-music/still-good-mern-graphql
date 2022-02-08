@@ -42,17 +42,17 @@ Still Good is a product tracking tool, designed to remedy your wasteful habits o
 
 ## Instructions 
 
-| 1. New users can register with email/password | 2. Returning users can log in with the same email/password |
+| 1. New users can sign up with username/email/password | 2. Returning users can log in with the same email/password |
 | :-- | :-- |
-| ![Work-It-Done register](LINK WILL GO HERE "register") | ![Work-It-Done login](LINK WILL GO HERE"login") |
+| ![Still Good - sign up](./assets/signup-screenshot-1 "signup") | ![Still good - log in](./assets/login-screenshot-2 "login") |
 
-| 3. Create a new project | 4. View, add, or update columns and cards |
-| :-- | :-- |
-| ![Work-It-Done create-new-project](LINK WILL GO HERE "create-new-project") | ![Work-It-Done update-project](LINK WILL GO HERE "update-project") |
+| 3. Once logged in, users will be taken to the "Item List" page where a list of their items is stored |
+| :-- |
+| ![Still Good - view item list](./assets/item-list-screenshot-3 "view-item-list") |
 
-|5. Choose an existing project from the list | 6. View, add, or update columns and cards |
+|5. Edit or delete items on the list | 6. Add new items to the list |
 | :-- | :-- |
-| ![Work-It-Done workspace](LINK WILL GO HERE "workspace") | ![Work-It-Done existing-project](LINK WILL GO HERE "existing-project") |
+| ![Still Good - edit or delete item](./assets/edit-item-screenshot-4 "edit-delete-items") | ![Still Good - add new item](./assets/add-item-screenshot-5 "add-item") |
 
 ## Technologies Utilized
  
@@ -63,6 +63,12 @@ Still Good is a product tracking tool, designed to remedy your wasteful habits o
  * MaterialUI
  * GraphQL
  * JavaScript
+ * Mongoose
+ * Apollo Server Express
+ * JSON Web Token
+ * Bcrypt
+ * Day.js
+ * React Router Dom
  * HTML
  * CSS
 
@@ -75,16 +81,16 @@ Still Good is a product tracking tool, designed to remedy your wasteful habits o
 - Backend, testing, bug fixes
 
 **TJ James**
-- Frontend, initial project setup, UI design, testing, bug fixes
+- Frontend, initial project setup, UI design, validation, testing, bug fixes
 
 **Melvin Welton** 
 - Backend, testing, bug fixes
 
 **Alex McDaniel** 
-- Backend, testing, bug fixes
+- Backend lead, testing, bug fixes
 
 **Lauren Groh** 
-- Frontend, README, initial models & associations, testing, bug fixes
+- Frontend, initial models & associations, validation, mutations, README, PPT slideshow, validation, mutations
 
 ## Questions
 
@@ -98,7 +104,12 @@ If you have any questions, feel free to connect with us through Github:
 * [Lauren Groh](https://github.com/GrohTech)
 
 ## Future Features
-1. Desktop version
+1. Create desktop version
+2. Tie in other food APIs so users can search for existing products
+3. Set up reminders/notifications
+4. Implement food safety pop ups/notes
+5. Add weekly or monthly calendar view
+6. Add barcode scanning API
 
 ## Collaboration Requests
 
