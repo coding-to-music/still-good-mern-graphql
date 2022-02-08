@@ -44,15 +44,15 @@ Still Good is a product tracking tool, designed to remedy your wasteful habits o
 
 | 1. New users can sign up with username/email/password | 2. Returning users can log in with the same email/password |
 | :-- | :-- |
-| ![Still Good - sign up](./assets/signup-screenshot-1 "signup") | ![Still good - log in](./assets/login-screenshot-2 "login") |
+| ![Still Good - sign up](./assets/signup-screenshot-1.png "signup") | ![Still good - log in](./assets/login-screenshot-2.png "login") |
 
 | 3. Once logged in, users will be taken to the "Item List" page where a list of their items is stored |
 | :-- |
-| ![Still Good - view item list](./assets/item-list-screenshot-3 "view-item-list") |
+| ![Still Good - view item list](./assets/item-list-screenshot-3.png "view-item-list") |
 
 |5. Edit or delete items on the list | 6. Add new items to the list |
 | :-- | :-- |
-| ![Still Good - edit or delete item](./assets/edit-item-screenshot-4 "edit-delete-items") | ![Still Good - add new item](./assets/add-item-screenshot-5 "add-item") |
+| ![Still Good - edit or delete item](./assets/edit-item-screenshot-4.png "edit-delete-items") | ![Still Good - add new item](./assets/add-item-screenshot-5.png "add-item") |
 
 ## Technologies Utilized
  
