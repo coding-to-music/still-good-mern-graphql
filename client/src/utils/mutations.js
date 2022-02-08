@@ -40,7 +40,6 @@ export const UPDATE_ITEM = gql`
   mutation updateItem($input: UpdateItemInput) {
     updateItem(input: $input) {
       _id
-      username
       savedItems {
         categories
         storageLocation
@@ -56,17 +55,12 @@ export const UPDATE_ITEM = gql`
 export const REMOVE_ITEM = gql`
   mutation removeItem($_id: ID!) {
     removeItem(_id: $_id) {
-      _id
-      username
-      email
-      savedItems {
-        categories
-        storageLocation
-        addedDate
-        useByDate
-        name
-        quantity
-      }
+      categories
+      storageLocation
+      addedDate
+      useByDate
+      name
+      quantity
     }
   }
 `;
