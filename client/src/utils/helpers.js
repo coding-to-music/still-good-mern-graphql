@@ -1,7 +1,9 @@
 import dayJs from 'dayjs';
 
 export function sortDate(itemArray) {
-  itemArray.sort((a, b) => {
+  console.log(itemArray);
+
+  itemArray.slice().sort((a, b) => {
     if (a.useByDate < b.useByDate) {
       return -1;
     }

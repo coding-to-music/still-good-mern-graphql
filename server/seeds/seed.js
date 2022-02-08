@@ -15,15 +15,15 @@ db.once('open', async () => {
   for (let i = 0; i < numberOfUsers; i += 1) {
     const email = faker.internet.email();
     const password = faker.internet.password();
-    const hashedPassword = await bcrypt.hash(password,10);
-    userData.push({email, password: hashedPassword});
+    const hashedPassword = await bcrypt.hash(password, 10);
+    userData.push({ email, password: hashedPassword });
   }
 
   const createdUsers = await User.collection.insertMany(userData);
 
   const userIDsArray = [];
   const userIDsObject = createdUsers.insertedIds;
-  for (let key in userIDsObject){
+  for (let key in userIDsObject) {
     userIDsArray.push(userIDsObject[key]);
   }
 
@@ -36,7 +36,7 @@ db.once('open', async () => {
     const category = faker.word.noun();
     const itemStorageLocation = faker.word.verb();
     const itemExpirationDate = faker.date.soon(15).toString();
-    const itemQuantity = (Math.floor(Math.random() * 9) + 1);
+    const itemQuantity = Math.floor(Math.random() * 9) + 1;
     const dateNow = faker.date.recent(3).toString();
 
     const item = {
@@ -45,16 +45,15 @@ db.once('open', async () => {
       name: itemName,
       quantity: itemQuantity,
       addedDate: dateNow,
-      expirationDate: itemExpirationDate
-    }
+      useByDate: itemExpirationDate,
+    };
 
     const createdItem = await Item.create(item);
 
     const updatedUser = await User.updateOne(
-      {_id: userIDsArray[randomUser]},
-      {$push: {savedItems: createdItem._id}}
+      { _id: userIDsArray[randomUser] },
+      { $push: { savedItems: createdItem._id } }
     );
-
   }
   process.exit();
 });

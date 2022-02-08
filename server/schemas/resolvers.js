@@ -3,26 +3,27 @@ const { signToken } = require('../utils/auth');
 const { AuthenticationError, UserInputError } = require('apollo-server-express');
 const resolvers = {
   Query: {
+    // Query logged in user's data
     me: async (parent, args, context) => {
       if (context.user) {
-        const userData = await User.findOne({ _id: context.user._id })
-          .select('-__v -password')
-          .populate("savedItems")
+        const userData = await User.findOne({ _id: context.user._id }).select('-__v -password').populate('savedItems');
 
         return userData;
       }
 
       throw new AuthenticationError('Not logged in');
-    }
+    },
   },
   Mutation: {
+    // Add new user app
     addUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user);
 
       return { token, user };
     },
-   
+
+    // Log existing user in to app
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -39,15 +40,12 @@ const resolvers = {
       const token = signToken(user);
       return { token, user };
     },
-    
-    saveItem: async (parent,  input, context) => {
+
+    // Save item to user's savedItems
+    saveItem: async (parent, { input }, context) => {
       if (context.user) {
-        const item = await Item.create({...input})
-        await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { savedItems: item._id } },
-          { new: true }
-        );
+        const item = await Item.create({ ...input });
+        await User.findByIdAndUpdate({ _id: context.user._id }, { $push: { savedItems: item._id } }, { new: true });
 
         return item;
       }
@@ -55,31 +53,31 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    updateItem: async (parent,  input , context) => {
+    // Update item in user's savedItems
+    updateItem: async (parent, { input }, context) => {
       if (context.user) {
-        const updatedItem = await Item.findByIdAndUpdate({...input},{},{new:true})
+        const updatedItem = await Item.findByIdAndUpdate({ ...input }, {}, { new: true });
         return updatedItem;
       }
 
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeItem: async(parent, {_id}, context)=>{
-      if(context.user) {
-        const item = await Item.findByIdAndDelete({_id});
+    removeItem: async (parent, { _id }, context) => {
+      if (context.user) {
+        const item = await Item.findByIdAndDelete({ _id });
         const user = await User.findOneAndUpdate(
-          {_id: context.user._id},
-          {$pull:{savedItems:{_id}}},
-          {new:false}
-        )
+          { _id: context.user._id },
+          { $pull: { savedItems: { _id } } },
+          { new: false }
+        );
         if (!item) {
-          throw new UserInputError("item does not exist");
-          
+          throw new UserInputError('item does not exist');
         }
-        return item; 
+        return item;
       }
-      throw new AuthenticationError('Incorrect credentials');
+      throw new AuthenticationError('You need to be logged in!');
     },
-  }
+  },
 };
 
 module.exports = resolvers;
