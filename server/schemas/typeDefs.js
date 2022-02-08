@@ -11,10 +11,10 @@ type Item {
   _id: ID
   categories: [String]
   storageLocation: String
-  name: String
+  name: String!
   quantity: Int
   addedDate: String
-  expirationDate: String
+  expirationDate: String!
 }
 type Auth {
   token: ID!
@@ -24,22 +24,13 @@ type Auth {
 type Query {
   me: User
 }
-input SavedItemInput {
-  _id: ID
-  categories: [String]
-  storageLocation: String
-  name: String!
-  quantity: Int
-  addedDate: String
-  expirationDate: String!
-}
 
 type Mutation { 
   login(email: String!, password: String!): Auth
   addUser(email: String!, password: String!): Auth
-  saveItem(input: SavedItemInput): Item
-  updateItem(input: SavedItemInput): Item
-  removeItem(_id: ID): Item
+  saveItem(categories: [String], storageLocation: String, name: String!, quantity: Int, addedDate: String, expirationDate: String!): Item
+  updateItem(_id: ID!, categories: [String], storageLocation: String, name: String!, quantity: Int, addedDate: String, expirationDate: String!): Item
+  removeItem(_id: ID!): Item
 }
 `;
 

@@ -1,6 +1,6 @@
 const { User, Item } = require('../models');
 const { signToken } = require('../utils/auth');
-
+const { AuthenticationError, UserInputError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     me: async (parent, args, context) => {
@@ -55,27 +55,27 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
 
-    updateItem: async (parent, { input }, context) => {
+    updateItem: async (parent,  input , context) => {
       if (context.user) {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $push: { savedItems: input } },
-          { new: false }
-        );
-
-        return updatedUser;
+        const updatedItem = await Item.findByIdAndUpdate({...input},{},{new:true})
+        return updatedItem;
       }
 
       throw new AuthenticationError('You need to be logged in!');
     },
     removeItem: async(parent, {_id}, context)=>{
       if(context.user) {
+        const item = await Item.findByIdAndDelete({_id});
         const user = await User.findOneAndUpdate(
           {_id: context.user._id},
           {$pull:{savedItems:{_id}}},
-          {new: true}
+          {new:false}
         )
-        return user 
+        if (!item) {
+          throw new UserInputError("item does not exist");
+          
+        }
+        return item; 
       }
       throw new AuthenticationError('Incorrect credentials');
     },
