@@ -49,7 +49,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
           {/* Quanity and Unit */}
           <Grid item xs={3} sm={2}>
             <Typography variant="body2" gutterBottom xs={1} textAlign="left">
-              {`${item.quantity} ${item.unit}`}
+              Quantity: {item.quantity ? item.quantity: "N/A"}
             </Typography>
           </Grid>
 
@@ -63,7 +63,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
           {/* Storage Location */}
           <Grid item xs={12} sm={3}>
             <Typography variant="body2" color="text.secondary" textAlign="left">
-              Stored: {item.storageLocation}
+              Stored: {item.storageLocation ? item.storageLocation: "N/A"}
             </Typography>
           </Grid>
         </Grid>
