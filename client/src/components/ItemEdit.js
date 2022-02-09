@@ -59,7 +59,7 @@ function ItemEdit({
     // If required fields are entered send data and reset form
     if (editedItem.name && editedItem.useByDate) {
       // reset validation errors
-      if(editedItem.quantity) {
+      if (editedItem.quantity) {
         editedItem.quantity = parseInt(editedItem.quantity);
       }
       if (isNewItem) {
@@ -118,34 +118,16 @@ function ItemEdit({
             onChange={e => editField(e)}
           />
 
-          <Grid container>
-            <Grid item xs={7}>
-              {/* Quantity Field */}
-              <TextField
-                name="quantity"
-                defaultValue={editedItem.quantity}
-                size="small"
-                label="Quantity"
-                type="number"
-                onChange={e => editField(e)}
-              />
-            </Grid>
-            <Grid item xs={5}>
-              {/* Unit Field */}
-              {/*
-      // TODO make this a select instead of a text field
-      // TODO create select options
-    */}
-              <TextField
-                name="unit"
-                defaultValue={editedItem.unit}
-                size="small"
-                label="Unit"
-                type="text"
-                onChange={e => editField(e)}
-              />
-            </Grid>
-          </Grid>
+          {/* Quantity Field */}
+          <TextField
+            name="quantity"
+            defaultValue={editedItem.quantity}
+            size="small"
+            label="Quantity"
+            type="number"
+            onChange={e => editField(e)}
+          />
+
           {/* Use By Field */}
           <TextField
             name="useByDate"

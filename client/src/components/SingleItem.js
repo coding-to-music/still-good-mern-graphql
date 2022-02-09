@@ -22,6 +22,16 @@ function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
     deleteItem(item._id);
   }
 
+  function quantityString(quantity) {
+    if (quantity <= 0) {
+      return '';
+    } else if (quantity === 1) {
+      return `${quantity} unit`;
+    } else {
+      return `${quantity} units`;
+    }
+  }
+
   return (
     <Box
       variant="outlined"
@@ -48,7 +58,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
           {/* Quanity and Unit */}
           <Grid item xs={3} sm={2}>
             <Typography variant="body2" gutterBottom xs={1} textAlign="left">
-              {`${item.quantity || ''} ${item.unit || ''}`}
+              {quantityString(item.quantity)}
             </Typography>
           </Grid>
 
