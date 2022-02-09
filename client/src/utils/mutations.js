@@ -38,7 +38,7 @@ export const SAVE_ITEM = gql`
 `;
 
 export const UPDATE_ITEM = gql`
-  mutation updateItem($input: UpdateItemInput) {
+  mutation updateItem($input: SavedItemInput) {
     updateItem(input: $input) {
       _id
       categories

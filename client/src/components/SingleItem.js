@@ -20,7 +20,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
 
   // Delete item button handler
   function handleDeleteButton() {
-    removeItem(item._id);
+    removeItem({variables: {_id: item._id}});
   }
 
   return (
