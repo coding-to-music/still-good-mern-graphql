@@ -55,21 +55,12 @@ const resolvers = {
 
     // Update item in user's savedItems
     updateItem: async (parent, { input }, context) => {
-<<<<<<< HEAD
-      console.log(input);
-=======
->>>>>>> develop
-
       if (context.user) {
         if (!input._id) {
           throw new ApolloError('Need an ID to update an item');
         }
 
-<<<<<<< HEAD
-        const updatedItem = await Item.findByIdAndUpdate(input._id, { savedItems: { input } }, { new: true });
-=======
-        const updatedItem = await Item.findByIdAndUpdate(input._id,{...input},{new:true})
->>>>>>> develop
+        const updatedItem = await Item.findByIdAndUpdate(input._id, { ...input }, { new: true });
         return updatedItem;
       }
 

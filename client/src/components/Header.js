@@ -13,9 +13,6 @@ function Header() {
 
         {Auth.loggedIn() && (
           <>
-            <MenuItem component={Link} to="/itemlist" margin={3}>
-              ItemList
-            </MenuItem>
             <MenuItem component={Link} to="/" onClick={Auth.logout}>
               Logout
             </MenuItem>
