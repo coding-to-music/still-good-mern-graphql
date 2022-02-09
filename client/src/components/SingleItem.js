@@ -19,6 +19,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
 
   // Delete item button handler
   function handleDeleteButton() {
+<<<<<<< HEAD
     console.log(item._id);
     deleteItem(item._id);
   }
@@ -31,6 +32,9 @@ function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
     } else {
       return `${quantity} units`;
     }
+=======
+    removeItem({variables: {_id: item._id}});
+>>>>>>> victor.weinert-branch
   }
 
   return (
