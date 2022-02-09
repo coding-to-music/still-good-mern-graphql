@@ -8,6 +8,7 @@ import { useMutation } from '@apollo/client';
 import { REMOVE_ITEM } from '../utils/mutations';
 
 function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
+  const [removeItem, { error }] = useMutation(REMOVE_ITEM);
   // Edit item button handler
   function handleEditItem() {
     // Set item to be edited in modal
