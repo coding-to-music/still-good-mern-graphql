@@ -4,6 +4,7 @@ import { Stack, TextField, Button } from '@mui/material';
 import Auth from '../utils/auth';
 import { LOGIN } from '../utils/mutations';
 import { validateEmail } from '../utils/helpers';
+import { setAuthentication } from '../utils/auth';
 
 function Login() {
   const [login, { data, error }] = useMutation(LOGIN);
@@ -22,7 +23,14 @@ function Login() {
         });
         console.log(mutationResponse);
         const token = mutationResponse.data.login.token;
-        Auth.login(token);
+        Auth.login(token)
+          .then(response => {
+            setAuthentication(response.data.token, response.data.user);
+          })
+          .catch(err => {
+            console.log('login api function error' , err);
+          });
+
       } catch (e) {
         console.log(e);
       }
