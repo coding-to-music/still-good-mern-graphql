@@ -21,7 +21,8 @@ function Signup() {
         const mutationResponse = await signup({
           variables: { email: email, password: password },
         });
-        const token = mutationResponse.data.login.token;
+        console.log(mutationResponse);
+        const token = mutationResponse.data.addUser.token;
         Auth.login(token);
       } catch (e) {
         console.log(e);

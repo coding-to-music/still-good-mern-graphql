@@ -4,12 +4,15 @@ import '../App.css';
 
 import Login from '../components/Login';
 import Signup from '../components/Signup';
-
+import AuthService from '../utils/auth';
 function Welcome() {
   const [selectedTab, setSelectedTab] = useState(0);
 
   function handleTabChange(event, newValue) {
     setSelectedTab(newValue);
+  }
+  if (AuthService.loggedIn()) {
+    window.location.assign("/itemList");
   }
   return (
     <Stack className={'welcome-stack'} maxWidth={900} margin="auto">
