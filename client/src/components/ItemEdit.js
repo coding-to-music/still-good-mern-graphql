@@ -14,8 +14,22 @@ import {
 import TaskAlt from '@mui/icons-material/TaskAlt';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
+// import { UPDATE_ITEM } from '../utils/mutations';
 
-function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemData, setItemData, saveItem }) {
+function ItemEdit({
+  dialogOpen,
+  setEditedItem,
+  editedItem,
+  setDialogOpen,
+  itemData,
+  setItemData,
+  saveItem,
+  updateItem,
+}) {
+  // Check whether adding or updating item
+  let isNewItem;
+  !editedItem._id ? (isNewItem = true) : (isNewItem = false);
+
   // Generic onChange handler
   function editField(event) {
     const { name, value } = event.target;
@@ -29,10 +43,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
   const [itemNameError, setItemNameError] = useState(false);
   const [useByDateError, setUseByDateError] = useState(false);
 
-  // Submit item handler
-  const handleFormSubmit = async event => {
-    event.preventDefault();
-
+  async function submitItemData() {
     // reset validation errors
     setItemNameError(false);
     setUseByDateError(false);
@@ -49,20 +60,33 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
     if (editedItem.name && editedItem.useByDate) {
       // reset validation errors
 
-      const { data } = await saveItem({ variables: { input: editedItem } });
-      setItemData([...itemData, data.saveItem]);
+      if (isNewItem) {
+        const { data } = await saveItem({ variables: { input: editedItem } });
+      } else {
+        const { data } = await updateItem({ variables: { input: editedItem } });
+      }
+      // setItemData([...itemData, data.saveItem]);
 
       // clear edited
       setEditedItem({});
-
-      setDialogOpen(false);
     }
-  };
-  // TODO Submit and add button handler
-  // TODO suggest refactoring out check and submit function to use for both buttons
-  function handleSubmitAndAdd() {
-    setDialogOpen(false);
   }
+
+  // Submit item handler
+  const handleSubmitItem = event => {
+    event.preventDefault();
+
+    submitItemData();
+    setDialogOpen(false);
+  };
+
+  // Submit item and add handler
+  const handleSubmitItemAndAdd = event => {
+    event.preventDefault();
+
+    submitItemData();
+    setDialogOpen(true);
+  };
 
   // Cancel button handler
   function handleEditCancel() {
@@ -78,7 +102,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
   return (
     <Dialog onClose={handleClose} open={dialogOpen}>
       <DialogTitle>Add/Edit Items</DialogTitle>
-      <form noValidate autoComplete="off" onSubmit={handleFormSubmit}>
+      <form noValidate autoComplete="off">
         <Stack margin={2} spacing={2}>
           {/* Name Field */}
           <TextField
@@ -89,9 +113,6 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
             type="text"
             required
             error={itemNameError}
-            InputLabelProps={{
-              shrink: true,
-            }}
             onChange={e => editField(e)}
           />
 
@@ -104,9 +125,6 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
                 size="small"
                 label="Quantity"
                 type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
                 onChange={e => editField(e)}
               />
             </Grid>
@@ -122,9 +140,6 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
                 size="small"
                 label="Unit"
                 type="text"
-                InputLabelProps={{
-                  shrink: true,
-                }}
                 onChange={e => editField(e)}
               />
             </Grid>
@@ -162,9 +177,11 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
             name="storageLocation"
             label="Stored where"
             size="small"
-            value={editedItem.storageLocation ? editedItem.storageLocation : 'other'}
+            color="primary"
+            value={editedItem.storageLocation ? editedItem.storageLocation : ''}
             onChange={e => editField(e)}
           >
+            <MenuItem value=""></MenuItem>
             <MenuItem value="fridge">Fridge</MenuItem>
             <MenuItem value="freezer">Freezer</MenuItem>
             <MenuItem value="pantry">Pantry</MenuItem>
@@ -174,12 +191,12 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, itemDa
           {/* Buttons */}
           <ButtonGroup variant="contained" fullWidth={true}>
             <Tooltip title="Submit" placement="top">
-              <Button onClick={handleFormSubmit}>
+              <Button onClick={handleSubmitItem}>
                 <TaskAlt />
               </Button>
             </Tooltip>
             <Tooltip title="Submit and Add" placement="top">
-              <Button onClick={handleSubmitAndAdd}>
+              <Button onClick={handleSubmitItemAndAdd}>
                 <AddTaskIcon />
               </Button>
             </Tooltip>
