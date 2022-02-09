@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, MenuItem, Typography } from '@mui/material';
+import Auth from '../utils/auth';
 
 function Header() {
   return (
@@ -9,13 +10,14 @@ function Header() {
         <Typography variant="h4" textAlign="left" sx={{ m: 2, flexGrow: 1 }}>
           StillGood
         </Typography>
-        <MenuItem component={Link} to="/">
-          Welcome
-        </MenuItem>
 
-        <MenuItem component={Link} to="/itemlist" margin={3}>
-          ItemList
-        </MenuItem>
+        {Auth.loggedIn() && (
+          <>
+            <MenuItem component={Link} to="/" onClick={Auth.logout}>
+              Logout
+            </MenuItem>
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );

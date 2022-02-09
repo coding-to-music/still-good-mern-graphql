@@ -4,6 +4,7 @@ const { faker } = require('@faker-js/faker');
 const fs = require('fs');
 const foods = require('./foods.json').foods;
 const bcrypt = require('bcrypt');
+const dayjs = require('dayjs');
 faker.seed(1123123123123123123123);
 db.once('open', async () => {
   await Item.deleteMany({});
@@ -15,15 +16,15 @@ db.once('open', async () => {
   for (let i = 0; i < numberOfUsers; i += 1) {
     const email = faker.internet.email();
     const password = faker.internet.password();
-    const hashedPassword = await bcrypt.hash(password,10);
-    userData.push({email, password: hashedPassword});
+    const hashedPassword = await bcrypt.hash(password, 10);
+    userData.push({ email, password: hashedPassword });
   }
 
   const createdUsers = await User.collection.insertMany(userData);
 
   const userIDsArray = [];
   const userIDsObject = createdUsers.insertedIds;
-  for (let key in userIDsObject){
+  for (let key in userIDsObject) {
     userIDsArray.push(userIDsObject[key]);
   }
 
@@ -34,27 +35,27 @@ db.once('open', async () => {
     const randomUser = Math.floor(Math.random() * (numberOfUsers - 1));
     const itemName = foods[randomFoodIndex];
     const category = faker.word.noun();
-    const itemStorageLocation = faker.word.verb();
-    const itemExpirationDate = faker.date.soon(15).toString();
-    const itemQuantity = (Math.floor(Math.random() * 9) + 1);
-    const dateNow = faker.date.recent(3).toString();
+    const storageLocationArray = ['', 'Fridge', 'Freezer', 'Pantry', 'Other'];
+    const itemStorageLocation = storageLocationArray[Math.floor(Math.random() * storageLocationArray.length - 1)];
+    const itemExpirationDate = faker.date.soon(15);
+    const itemQuantity = Math.floor(Math.random() * 9) + 1;
+    const dateNow = faker.date.recent(3);
 
     const item = {
       categories: category,
       storageLocation: itemStorageLocation,
       name: itemName,
       quantity: itemQuantity,
-      addedDate: dateNow,
-      expirationDate: itemExpirationDate
-    }
+      addedDate: dayjs(dateNow).format('YYYY-MM-DD'),
+      useByDate: dayjs(itemExpirationDate).format('YYYY-MM-DD'),
+    };
 
     const createdItem = await Item.create(item);
 
     const updatedUser = await User.updateOne(
-      {_id: userIDsArray[randomUser]},
-      {$push: {savedItems: createdItem._id}}
+      { _id: userIDsArray[randomUser] },
+      { $push: { savedItems: createdItem._id } }
     );
-
   }
   process.exit();
 });

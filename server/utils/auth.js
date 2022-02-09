@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secret = 'krabbypattyformula';
+const secret = process.env.SECRET_JWT || 'krabbypattyformula';
 const expiration = '2h';
 
 module.exports = {

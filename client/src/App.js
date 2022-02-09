@@ -5,12 +5,12 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from './components/Header';
 import Welcome from './pages/Welcome';
-import Login from './pages/Login';
+import AuthService from "./utils/auth";
 import ItemList from './pages/ItemList';
 import NoMatch from './pages/NoMatch';
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'http://localhost:3001/graphql',
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -25,7 +25,10 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    addTypename: false
+  })
+
 });
 
 function App() {
@@ -36,7 +39,6 @@ function App() {
           <Header />
           <Routes>
             <Route exact path="/" element={<Welcome />} />
-            <Route exact path="/login" element={<Login />} />
             <Route exact path="/itemlist" element={<ItemList />} />
             <Route path="/*" element={<NoMatch />} />
           </Routes>

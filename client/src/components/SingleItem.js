@@ -4,9 +4,11 @@ import { colorCardByDate } from '../utils/helpers';
 import { Box, Typography, Grid, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-// import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
+import { useMutation } from '@apollo/client';
+import { REMOVE_ITEM } from '../utils/mutations';
 
-function SingleItem({ item, setDialogOpen, setEditedItem }) {
+function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
+  const [removeItem, { error }] = useMutation(REMOVE_ITEM);
   // Edit item button handler
   function handleEditItem() {
     // Set item to be edited in modal
@@ -15,7 +17,20 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
     setDialogOpen(true);
   }
 
-  // TODO Delete button handler
+  // Delete item button handler
+  function handleDeleteButton() {
+    removeItem({variables: {_id: item._id}});
+  }
+
+  function quantityString(quantity) {
+    if (quantity <= 0) {
+      return '';
+    } else if (quantity === 1) {
+      return `${quantity} unit`;
+    } else {
+      return `${quantity} units`;
+    }
+  }
 
   return (
     <Box
@@ -43,7 +58,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
           {/* Quanity and Unit */}
           <Grid item xs={3} sm={2}>
             <Typography variant="body2" gutterBottom xs={1} textAlign="left">
-              {`${item.quantity} ${item.unit}`}
+              {quantityString(item.quantity)}
             </Typography>
           </Grid>
 
@@ -54,10 +69,17 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
             </Typography>
           </Grid>
 
+          {/* Added on Date */}
+          <Grid item xs={12} sm={3}>
+            <Typography variant="body2" gutterBottom textAlign="left">
+              Added on: {dayjs(item.addedDate).format('MM/DD/YY') || ''}
+            </Typography>
+          </Grid>
+
           {/* Storage Location */}
           <Grid item xs={12} sm={3}>
             <Typography variant="body2" color="text.secondary" textAlign="left">
-              Stored: {item.storageLocation}
+              Stored: {item.storageLocation || 'Other'}
             </Typography>
           </Grid>
         </Grid>
@@ -66,7 +88,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
         <Grid item xs={2} sm={1} container justifyContent="flex-end">
           {/* Edit Button */}
           <Grid item xs={12} sm={6}>
-            <Tooltip title="Edit" placement="left">
+            <Tooltip title="Edit" placement="top">
               <Button
                 onClick={handleEditItem}
                 variant="contained"
@@ -80,26 +102,17 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
 
           {/* Delete Button */}
           <Grid item xs={12} sm={6}>
-            <Tooltip
-              title="Delete"
-              placement="left"
-              variant="contained"
-              size="small"
-              style={{ maxWidth: '30px', minWidth: '30px' }}
-            >
-              <Button>
+            <Tooltip title="Delete" placement="top">
+              <Button
+                onClick={handleDeleteButton}
+                variant="contained"
+                size="small"
+                style={{ maxWidth: '30px', minWidth: '30px' }}
+              >
                 <DeleteIcon />
               </Button>
             </Tooltip>
           </Grid>
-
-          {/* Find Recipe Button
-            // TODO ?? recipe search handler ??
-            <Tooltip title="Find Recipie" placement="left">
-            <Button>
-            <DinnerDiningIcon />
-            </Button> 
-          </Tooltip> */}
         </Grid>
       </Grid>
     </Box>

@@ -1,17 +1,17 @@
 import dayJs from 'dayjs';
 
 export function sortDate(itemArray) {
-  itemArray.sort((a, b) => {
+  const arrayToSort = [...itemArray];
+  arrayToSort.sort((a, b) => {
     if (a.useByDate < b.useByDate) {
       return -1;
     }
     if (a.useByDate > b.useByDate) {
       return 1;
     }
-
     return 0;
   });
-  return itemArray;
+  return arrayToSort;
 }
 
 export function colorCardByDate(useByDate) {
@@ -35,4 +35,11 @@ export function colorCardByDate(useByDate) {
     return SOON_DATE;
   }
   return STILL_GOOD;
+}
+
+export function validateEmail(email) {
+  if (/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    return true;
+  }
+  return false;
 }
