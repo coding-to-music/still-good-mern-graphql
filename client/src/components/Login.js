@@ -20,6 +20,7 @@ function Login() {
         const mutationResponse = await login({
           variables: { email: email, password: password },
         });
+        console.log(mutationResponse);
         const token = mutationResponse.data.login.token;
         Auth.login(token);
       } catch (e) {
