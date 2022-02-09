@@ -1,6 +1,6 @@
 const { User, Item } = require('../models');
 const { signToken } = require('../utils/auth');
-const { AuthenticationError, UserInputError } = require('apollo-server-express');
+const { AuthenticationError, UserInputError, ApolloError } = require('apollo-server-express');
 const resolvers = {
   Query: {
     // Query logged in user's data
@@ -55,14 +55,21 @@ const resolvers = {
 
     // Update item in user's savedItems
     updateItem: async (parent, { input }, context) => {
+<<<<<<< HEAD
       console.log(input);
+=======
+>>>>>>> develop
 
       if (context.user) {
         if (!input._id) {
           throw new ApolloError('Need an ID to update an item');
         }
 
+<<<<<<< HEAD
         const updatedItem = await Item.findByIdAndUpdate(input._id, { savedItems: { input } }, { new: true });
+=======
+        const updatedItem = await Item.findByIdAndUpdate(input._id,{...input},{new:true})
+>>>>>>> develop
         return updatedItem;
       }
 
