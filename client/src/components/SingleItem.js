@@ -4,11 +4,8 @@ import { colorCardByDate } from '../utils/helpers';
 import { Box, Typography, Grid, Button, Tooltip } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { useMutation } from '@apollo/client';
-import { REMOVE_ITEM } from '../utils/mutations';
 
-function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
-  const [removeItem, { error }] = useMutation(REMOVE_ITEM);
+function SingleItem({ item, setDialogOpen, setEditedItem, removeItem }) {
   // Edit item button handler
   function handleEditItem() {
     // Set item to be edited in modal
@@ -19,7 +16,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
 
   // Delete item button handler
   function handleDeleteButton() {
-    removeItem({variables: {_id: item._id}});
+    removeItem({ variables: { _id: item._id } });
   }
 
   function quantityString(quantity) {

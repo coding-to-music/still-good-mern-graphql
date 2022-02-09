@@ -6,7 +6,6 @@ import { Stack, TextField, Button, Typography } from '@mui/material';
 import { validateEmail } from '../utils/helpers';
 
 function Signup() {
-  let error = '';
   const [signup] = useMutation(ADD_USER);
 
   const [email, setEmail] = useState();
