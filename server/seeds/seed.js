@@ -4,7 +4,7 @@ const { faker } = require('@faker-js/faker');
 const fs = require('fs');
 const foods = require('./foods.json').foods;
 const bcrypt = require('bcrypt');
-const dayjs = require('dayjs')
+const dayjs = require('dayjs');
 faker.seed(1123123123123123123123);
 db.once('open', async () => {
   await Item.deleteMany({});
@@ -35,7 +35,8 @@ db.once('open', async () => {
     const randomUser = Math.floor(Math.random() * (numberOfUsers - 1));
     const itemName = foods[randomFoodIndex];
     const category = faker.word.noun();
-    const itemStorageLocation = faker.word.verb();
+    const storageLocationArray = ['', 'Fridge', 'Freezer', 'Pantry', 'Other'];
+    const itemStorageLocation = storageLocationArray[Math.floor(Math.random() * storageLocationArray.length - 1)];
     const itemExpirationDate = faker.date.soon(15);
     const itemQuantity = Math.floor(Math.random() * 9) + 1;
     const dateNow = faker.date.recent(3);
@@ -45,8 +46,8 @@ db.once('open', async () => {
       storageLocation: itemStorageLocation,
       name: itemName,
       quantity: itemQuantity,
-      addedDate: dayjs(dateNow).format('MM/DD/YY'),
-      useByDate: dayjs(itemExpirationDate).format('MM/DD/YY'),
+      addedDate: dayjs(dateNow).format('YYYY-MM-DD'),
+      useByDate: dayjs(itemExpirationDate).format('YYYY-MM-DD'),
     };
 
     const createdItem = await Item.create(item);

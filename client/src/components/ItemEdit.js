@@ -1,20 +1,8 @@
-import React, { useState, forceUpdate } from 'react';
-import {
-  Button,
-  ButtonGroup,
-  Dialog,
-  DialogTitle,
-  Grid,
-  MenuItem,
-  Tooltip,
-  Select,
-  Stack,
-  TextField,
-} from '@mui/material';
+import React, { useState } from 'react';
+import { Button, ButtonGroup, Dialog, DialogTitle, MenuItem, Tooltip, Select, Stack, TextField } from '@mui/material';
 import TaskAlt from '@mui/icons-material/TaskAlt';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
-// import { UPDATE_ITEM } from '../utils/mutations';
 
 function ItemEdit({
   dialogOpen,
@@ -58,16 +46,17 @@ function ItemEdit({
 
     // If required fields are entered send data and reset form
     if (editedItem.name && editedItem.useByDate) {
-      // reset validation errors
+      // change quantity from string to int
       if (editedItem.quantity) {
         editedItem.quantity = parseInt(editedItem.quantity);
       }
+
+      // choose mutation based on isNewItem flag
       if (isNewItem) {
         const { data } = await saveItem({ variables: { input: editedItem } });
       } else {
         const { data } = await updateItem({ variables: { input: editedItem } });
       }
-      // setItemData([...itemData, data.saveItem]);
 
       // clear edited
       setEditedItem({});
@@ -166,10 +155,10 @@ function ItemEdit({
             onChange={e => editField(e)}
           >
             <MenuItem value=""></MenuItem>
-            <MenuItem value="fridge">Fridge</MenuItem>
-            <MenuItem value="freezer">Freezer</MenuItem>
-            <MenuItem value="pantry">Pantry</MenuItem>
-            <MenuItem value="other">Other</MenuItem>
+            <MenuItem value="Fridge">Fridge</MenuItem>
+            <MenuItem value="Freezer">Freezer</MenuItem>
+            <MenuItem value="Pantry">Pantry</MenuItem>
+            <MenuItem value="Other">Other</MenuItem>
           </Select>
 
           {/* Buttons */}
