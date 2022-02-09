@@ -59,7 +59,13 @@ function ItemList() {
           sortDate(itemData).map(item => {
             if (item._id) {
               return (
-                <SingleItem setEditedItem={setEditedItem} setDialogOpen={setDialogOpen} item={item} key={item._id} />
+                <SingleItem
+                  setEditedItem={setEditedItem}
+                  setDialogOpen={setDialogOpen}
+                  deleteItem={deleteItem}
+                  item={item}
+                  key={item._id}
+                />
               );
             }
           })
