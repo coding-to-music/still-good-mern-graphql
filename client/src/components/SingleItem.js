@@ -37,6 +37,16 @@ function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
 >>>>>>> victor.weinert-branch
   }
 
+  function quantityString(quantity) {
+    if (quantity <= 0) {
+      return '';
+    } else if (quantity === 1) {
+      return `${quantity} unit`;
+    } else {
+      return `${quantity} units`;
+    }
+  }
+
   return (
     <Box
       variant="outlined"
