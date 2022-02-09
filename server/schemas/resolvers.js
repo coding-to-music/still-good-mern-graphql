@@ -55,25 +55,14 @@ const resolvers = {
 
     // Update item in user's savedItems
     updateItem: async (parent, { input }, context) => {
-      debugger;
+
       if (context.user) {
         if (!input._id) {
           throw new ApolloError('Need an ID to update an item');
         }
-        const {_id, ...inputExceptId} = input;
-        const item = await Item.findByIdAndDelete({_id});
-        if (!item) {
-          throw new ApolloError('invalid ID');
-        }
-        const user = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { savedItems: { _id } } },
-          { new: true }
-        );
-        
-        const newItem = await Item.create({ ...inputExceptId });
-        await User.findByIdAndUpdate({ _id: context.user._id }, { $push: { savedItems: newItem._id } }, { new: true })
-        return newItem;
+
+        const updatedItem = await Item.findByIdAndUpdate(input._id,{...input},{new:true})
+        return updatedItem;
       }
 
       throw new AuthenticationError('You need to be logged in!');
