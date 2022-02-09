@@ -41,14 +41,12 @@ export const UPDATE_ITEM = gql`
   mutation updateItem($input: UpdateItemInput) {
     updateItem(input: $input) {
       _id
-      savedItems {
-        categories
-        storageLocation
-        addedDate
-        useByDate
-        name
-        quantity
-      }
+      categories
+      storageLocation
+      addedDate
+      useByDate
+      name
+      quantity
     }
   }
 `;

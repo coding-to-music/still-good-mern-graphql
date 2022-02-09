@@ -59,7 +59,9 @@ function ItemEdit({
     // If required fields are entered send data and reset form
     if (editedItem.name && editedItem.useByDate) {
       // reset validation errors
-
+      if(editedItem.quantity) {
+        editedItem.quantity = parseInt(editedItem.quantity);
+      }
       if (isNewItem) {
         const { data } = await saveItem({ variables: { input: editedItem } });
       } else {
