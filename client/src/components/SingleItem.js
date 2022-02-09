@@ -19,22 +19,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
 
   // Delete item button handler
   function handleDeleteButton() {
-<<<<<<< HEAD
-    console.log(item._id);
-    deleteItem(item._id);
-  }
-
-  function quantityString(quantity) {
-    if (quantity <= 0) {
-      return '';
-    } else if (quantity === 1) {
-      return `${quantity} unit`;
-    } else {
-      return `${quantity} units`;
-    }
-=======
     removeItem({variables: {_id: item._id}});
->>>>>>> victor.weinert-branch
   }
 
   function quantityString(quantity) {
