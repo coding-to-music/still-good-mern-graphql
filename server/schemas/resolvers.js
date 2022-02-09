@@ -61,7 +61,8 @@ const resolvers = {
           throw new ApolloError('Need an ID to update an item');
         }
 
-        return await Item.findOneAndUpdate({...input});
+        const updatedItem = await Item.findByIdAndUpdate(input._id,{...input},{new:true})
+        return updatedItem;
       }
 
       throw new AuthenticationError('You need to be logged in!');
