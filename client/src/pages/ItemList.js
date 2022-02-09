@@ -50,6 +50,7 @@ function ItemList() {
           itemData={itemData}
           setItemData={setItemData}
           saveItem={saveItem}
+          updateItem={updateItem}
         />
         <Typography variant="h5">My Goods</Typography>
 
