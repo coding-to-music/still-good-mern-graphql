@@ -7,9 +7,8 @@ import EditIcon from '@mui/icons-material/Edit';
 import { useMutation } from '@apollo/client';
 import { REMOVE_ITEM } from '../utils/mutations';
 
-function SingleItem({ item, setDialogOpen, setEditedItem }) {
+function SingleItem({ item, setDialogOpen, setEditedItem, deleteItem }) {
   const [removeItem, { error }] = useMutation(REMOVE_ITEM);
-
   // Edit item button handler
   function handleEditItem() {
     // Set item to be edited in modal
@@ -21,6 +20,16 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
   // Delete item button handler
   function handleDeleteButton() {
     removeItem({variables: {_id: item._id}});
+  }
+
+  function quantityString(quantity) {
+    if (quantity <= 0) {
+      return '';
+    } else if (quantity === 1) {
+      return `${quantity} unit`;
+    } else {
+      return `${quantity} units`;
+    }
   }
 
   return (
@@ -49,7 +58,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
           {/* Quanity and Unit */}
           <Grid item xs={3} sm={2}>
             <Typography variant="body2" gutterBottom xs={1} textAlign="left">
-              {`${item.quantity || ''} ${item.unit || ''}`}
+              {quantityString(item.quantity)}
             </Typography>
           </Grid>
 
@@ -79,7 +88,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
         <Grid item xs={2} sm={1} container justifyContent="flex-end">
           {/* Edit Button */}
           <Grid item xs={12} sm={6}>
-            <Tooltip title="Edit" placement="left">
+            <Tooltip title="Edit" placement="top">
               <Button
                 onClick={handleEditItem}
                 variant="contained"
@@ -93,7 +102,7 @@ function SingleItem({ item, setDialogOpen, setEditedItem }) {
 
           {/* Delete Button */}
           <Grid item xs={12} sm={6}>
-            <Tooltip title="Delete" placement="left">
+            <Tooltip title="Delete" placement="top">
               <Button
                 onClick={handleDeleteButton}
                 variant="contained"
