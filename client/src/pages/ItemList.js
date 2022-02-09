@@ -15,7 +15,7 @@ function ItemList() {
   const { loading, data } = useQuery(GET_ME);
   const [saveItem] = useMutation(SAVE_ITEM, { refetchQueries: [{ query: GET_ME }] });
   const [updateItem] = useMutation(UPDATE_ITEM, { refetchQueries: [{ query: GET_ME }] });
-  const [deleteItem] = useMutation(REMOVE_ITEM, { refetchQueries: [{ query: GET_ME }] });
+  const [removeItem] = useMutation(REMOVE_ITEM, { refetchQueries: [{ query: GET_ME }] });
 
   const [itemData, setItemData] = useState([]);
 
@@ -63,7 +63,7 @@ function ItemList() {
                 <SingleItem
                   setEditedItem={setEditedItem}
                   setDialogOpen={setDialogOpen}
-                  deleteItem={deleteItem}
+                  removeItem={removeItem}
                   item={item}
                   key={item._id}
                 />

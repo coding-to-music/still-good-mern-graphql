@@ -5,16 +5,7 @@ import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
 import dayjs from 'dayjs';
 
-function ItemEdit({
-  dialogOpen,
-  setEditedItem,
-  editedItem,
-  setDialogOpen,
-  itemData,
-  setItemData,
-  saveItem,
-  updateItem,
-}) {
+function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, saveItem, updateItem }) {
   // Check whether adding or updating item
   let isNewItem;
   !editedItem._id ? (isNewItem = true) : (isNewItem = false);
@@ -32,7 +23,7 @@ function ItemEdit({
   const [itemNameError, setItemNameError] = useState(false);
   const [useByDateError, setUseByDateError] = useState(false);
 
-  async function submitItemData() {
+  function submitItemData() {
     // reset validation errors
     setItemNameError(false);
     setUseByDateError(false);
@@ -54,30 +45,35 @@ function ItemEdit({
 
       // choose mutation based on isNewItem flag
       if (isNewItem) {
-        const { data } = await saveItem({ variables: { input: editedItem } });
+        saveItem({ variables: { input: editedItem } });
       } else {
-        const { data } = await updateItem({ variables: { input: editedItem } });
+        updateItem({ variables: { input: editedItem } });
       }
-
+      return true;
       // clear edited
-      setEditedItem({});
-      setDialogOpen(false);
     }
+    return false;
   }
 
   // Submit item handler
   const handleSubmitItem = event => {
     event.preventDefault();
 
-    submitItemData();
+    if (submitItemData()) {
+      setEditedItem({});
+      setDialogOpen(false);
+    }
   };
 
   // Submit item and add handler
   const handleSubmitItemAndAdd = event => {
     event.preventDefault();
 
-    submitItemData();
-    setDialogOpen(true);
+    if (submitItemData()) {
+      setDialogOpen(false);
+      setEditedItem({});
+      setDialogOpen(true);
+    }
   };
 
   // Cancel button handler
@@ -91,10 +87,11 @@ function ItemEdit({
   function handleClose() {
     setDialogOpen(false);
   }
+
   return (
     <Dialog onClose={handleClose} open={dialogOpen}>
       <DialogTitle>Add/Edit Items</DialogTitle>
-      <form noValidate autoComplete="off">
+      <form noValidate autoComplete="off" onSubmit={handleSubmitItem}>
         <Stack margin={2} spacing={2}>
           {/* Name Field */}
           <TextField

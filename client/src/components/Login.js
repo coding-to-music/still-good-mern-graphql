@@ -6,14 +6,13 @@ import { LOGIN } from '../utils/mutations';
 import { validateEmail } from '../utils/helpers';
 
 function Login() {
-  const [login, { data }] = useMutation(LOGIN);
+  const [login] = useMutation(LOGIN);
   const [email, setEmail] = useState();
   const [emailError, setEmailError] = useState(false);
   const [password, setPassword] = useState();
   const [passwordError, setPasswordError] = useState(false);
   const [errorDisplay, setErrorDisplay] = useState();
 
-  let error = '';
   async function handleLogin(event) {
     event.preventDefault();
 
