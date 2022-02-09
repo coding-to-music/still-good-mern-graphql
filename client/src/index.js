@@ -2,10 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {ThemeProvider, createTheme} from '@mui/material'
+import { ThemeProvider, createTheme } from '@mui/material';
 
-const theme = createTheme(
-{
+const theme = createTheme({
   palette: {
     type: 'light',
     primary: {
@@ -15,7 +14,7 @@ const theme = createTheme(
       main: '#F2C879',
     },
     error: {
-      main: '#F28705',
+      main: '#F44336',
     },
     info: {
       main: '#A0D3F2',
@@ -27,16 +26,12 @@ const theme = createTheme(
       main: '#F2EB80',
     },
   },
-}
-)
+});
 ReactDOM.render(
   <React.StrictMode>
-
-<ThemeProvider theme={theme}>
-
-    <App />
-</ThemeProvider>
- 
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -3,6 +3,7 @@ import { Button, ButtonGroup, Dialog, DialogTitle, MenuItem, Tooltip, Select, St
 import TaskAlt from '@mui/icons-material/TaskAlt';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
+import dayjs from 'dayjs';
 
 function ItemEdit({
   dialogOpen,
@@ -60,6 +61,7 @@ function ItemEdit({
 
       // clear edited
       setEditedItem({});
+      setDialogOpen(false);
     }
   }
 
@@ -68,7 +70,6 @@ function ItemEdit({
     event.preventDefault();
 
     submitItemData();
-    setDialogOpen(false);
   };
 
   // Submit item and add handler
@@ -135,7 +136,7 @@ function ItemEdit({
           {/* Added On Field */}
           <TextField
             name="addedDate"
-            defaultValue={editedItem.addedDate}
+            defaultValue={editedItem.addedDate || dayjs().format('YYYY-MM-DD')}
             size="small"
             label="Added on"
             type="date"
