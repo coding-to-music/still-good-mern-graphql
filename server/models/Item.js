@@ -15,7 +15,7 @@ const itemSchema = new Schema({
   },
   addedDate: {
     type: String,
-    default: dayjs().format('MM/DD/YY'),
+    default: dayjs().format('YYYY-MM-DD'),
   },
   useByDate: {
     type: String,

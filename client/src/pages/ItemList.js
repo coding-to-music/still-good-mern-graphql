@@ -57,8 +57,8 @@ function ItemList() {
         {/* Map items into cards */}
         {itemData ? (
           sortDate(itemData).map(item => {
-            if (item._id) {
-              return (
+            return (
+              item._id && (
                 <SingleItem
                   setEditedItem={setEditedItem}
                   setDialogOpen={setDialogOpen}
@@ -66,8 +66,8 @@ function ItemList() {
                   item={item}
                   key={item._id}
                 />
-              );
-            }
+              )
+            );
           })
         ) : (
           <Typography variant="h4">Add some goods!</Typography>
