@@ -1,5 +1,22 @@
 {
   "name": "StillGood",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "icons-129.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
   "short_name": "StillGood",
   "description": "A web app to help you track the freshness of your groceries",
   "background_color": "#F2C879",
