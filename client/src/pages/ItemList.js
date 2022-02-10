@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useMutation, useQuery } from '@apollo/client';
-import { Stack, Typography, Fab } from '@mui/material';
+import { Stack, Typography, Fab, Button, useMediaQuery } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import SingleItem from '../components/SingleItem';
 import ItemEdit from '../components/ItemEdit';
@@ -10,11 +10,12 @@ import { GET_ME } from '../utils/queries';
 import { SAVE_ITEM, UPDATE_ITEM, REMOVE_ITEM } from '../utils/mutations';
 
 function ItemList() {
+  const isXs = useMediaQuery('(max-width:900px)');
   // Pull in loggedIn user's data
   const { loading, data } = useQuery(GET_ME);
   const [saveItem] = useMutation(SAVE_ITEM, { refetchQueries: [{ query: GET_ME }] });
   const [updateItem] = useMutation(UPDATE_ITEM, { refetchQueries: [{ query: GET_ME }] });
-  const [deleteItem] = useMutation(REMOVE_ITEM, { refetchQueries: [{ query: GET_ME }] });
+  const [removeItem] = useMutation(REMOVE_ITEM, { refetchQueries: [{ query: GET_ME }] });
 
   const [itemData, setItemData] = useState([]);
 
@@ -62,7 +63,7 @@ function ItemList() {
                 <SingleItem
                   setEditedItem={setEditedItem}
                   setDialogOpen={setDialogOpen}
-                  deleteItem={deleteItem}
+                  removeItem={removeItem}
                   item={item}
                   key={item._id}
                 />
@@ -72,22 +73,31 @@ function ItemList() {
         ) : (
           <Typography variant="h4">Add some goods!</Typography>
         )}
+        {isXs ? (
+          <Fab
+            onClick={handleAddItem}
+            color="primary"
+            aria-label="add"
+            sx={{
+              right: 20,
+              bottom: 23,
+              position: 'fixed',
+            }}
+          >
+            <AddIcon />
+          </Fab>
+        ) : (
+          <Button
+            variant="contained"
+            display="fluid"
+            fullWidth
+            onClick={handleAddItem}
+            sx={{ position: 'fixed', width: '900px', bottom: 40 }}
+          >
+            Add Good(s)
+          </Button>
+        )}
       </Stack>
-      <Fab
-        onClick={handleAddItem}
-        color="primary"
-        aria-label="add"
-        sx={{
-          margin: 0,
-          top: 'auto',
-          right: 20,
-          bottom: 20,
-          left: 'auto',
-          position: 'fixed',
-        }}
-      >
-        <AddIcon />
-      </Fab>
     </>
   );
 }

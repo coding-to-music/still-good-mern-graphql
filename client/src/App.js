@@ -5,7 +5,6 @@ import { setContext } from '@apollo/client/link/context';
 
 import Header from './components/Header';
 import Welcome from './pages/Welcome';
-import AuthService from "./utils/auth";
 import ItemList from './pages/ItemList';
 import NoMatch from './pages/NoMatch';
 
@@ -25,11 +24,9 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(
-    {
-      addTypename: false
-    }
-  ),
+  cache: new InMemoryCache({
+    addTypename: false,
+  }),
 });
 
 function App() {
