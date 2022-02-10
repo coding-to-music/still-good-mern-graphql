@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { ThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
@@ -35,22 +35,10 @@ ReactDOM.render(
       <App />
 
     </ThemeProvider>
-    {
-    serviceWorkerRegister()
-  }
   </React.StrictMode>,
   
   document.getElementById('root'),
   
 
 );
-function serviceWorkerRegister() {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker
-      .register('./service-worker.js')
-      .then(() => console.log('Service Worker registered successfully.'))
-      .catch(error =>
-        console.log('Service Worker registration failed:', error)
-      );
-  }
-}
+serviceWorkerRegistration.register();
