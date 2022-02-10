@@ -2,8 +2,11 @@
   "name": "StillGood",
   "short_name": "StillGood",
   "description": "A web app to help you track the freshness of your groceries",
-  "start_url": "https://pacific-bayou-24755.herokuapp.com/",
   "background_color": "#F2C879",
   "display": "fullscreen",
-  "theme_color": "#010440"
+  "theme_color": "#010440",
+  "icons": [
+    {"512": "icons-512.png"},
+    {"128": "icons-129.png"}
+  ]
 }
