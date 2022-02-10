@@ -1,6 +1,5 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "StillGood",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,18 +7,20 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "icons-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo512.png",
+      "src": "icons-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "short_name": "StillGood",
+  "description": "A web app to help you track the freshness of your groceries",
+  "background_color": "#F2C879",
+  "display": "fullscreen",
+  "theme_color": "#010440",
+  "start_url": "/"
 }
