@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, ButtonGroup, Dialog, DialogTitle, MenuItem, Tooltip, Select, Stack, TextField } from '@mui/material';
+import { Transition } from '../transitions/Transition';
 import TaskAlt from '@mui/icons-material/TaskAlt';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
@@ -89,7 +90,7 @@ function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, saveIt
   }
 
   return (
-    <Dialog onClose={handleClose} open={dialogOpen}>
+    <Dialog onClose={handleClose} open={dialogOpen} TransitionComponent={Transition}>
       <DialogTitle>Add/Edit Items</DialogTitle>
       <form noValidate autoComplete="off" onSubmit={handleSubmitItem}>
         <Stack margin={2} spacing={2}>
