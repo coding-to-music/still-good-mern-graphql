@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { ThemeProvider, createTheme } from '@mui/material';
 
 const theme = createTheme({
@@ -27,6 +28,7 @@ const theme = createTheme({
     },
   },
 });
+
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
@@ -35,3 +37,4 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 );
+serviceWorkerRegistration.register();
