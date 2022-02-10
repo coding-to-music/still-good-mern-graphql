@@ -1,4 +1,4 @@
-const APP_PREFIX = 'Still-Good-';     
+const APP_PREFIX = 'StillGood-';     
 const VERSION = 'version_01';
 const CACHE_NAME = APP_PREFIX + VERSION;
 
@@ -15,14 +15,14 @@ const FILES_TO_CACHE = [
     "/pages/ItemList.js",
     "/pages/NoMatch.js",
     "/pages/Welcome.js",
-    "/pages/ItemList.js",
     "/utils/auth.js",
     "/utils/helpers.js",
     "/utils/mutations.js",
     "/utils/queries.js",
     "../public/index.html",
-    "../public/logo192.png",
-    "../public/logo512.png",
+    "../public/favicon.ico",
+    "../public/logo-129.png",
+    "../public/logo-512.png",
     "../public/manifest.json",
     "../public/robots.txt"
   ];
