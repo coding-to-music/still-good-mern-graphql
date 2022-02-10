@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+
 import { useMutation, useQuery } from '@apollo/client';
-import { Stack, Typography, Fab, Button, useMediaQuery } from '@mui/material';
+import { Stack, Typography, Fab, Button, useMediaQuery, CircularProgress } from '@mui/material';
+import { Transition } from '../transitions/Transition';
 import AddIcon from '@mui/icons-material/Add';
 import SingleItem from '../components/SingleItem';
 import ItemEdit from '../components/ItemEdit';
@@ -37,7 +39,7 @@ function ItemList() {
   }
 
   // Display message while data is loading
-  if (loading) return <Typography variant="h4">Loading</Typography>;
+  if (loading) return <CircularProgress margin="50px auto" />;
 
   // Main render
   return (
@@ -66,6 +68,7 @@ function ItemList() {
                   removeItem={removeItem}
                   item={item}
                   key={item._id}
+                  TransitionComponent={Transition}
                 />
               )
             );

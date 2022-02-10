@@ -19,7 +19,7 @@
     }
   ],
   "description": "A web app to help you track the freshness of your groceries",
-  "start_url": "http://localhost:3000/",
+  "start_url": "https://pacific-bayou-24755.herokuapp.com/",
   "background_color": "#F2C879",
   "display": "fullscreen",
   "theme_color": "#010440",
