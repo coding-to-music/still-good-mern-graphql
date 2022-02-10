@@ -7,7 +7,7 @@
       "type": "image/x-icon"
     },
     {
-      "src": "icons-129.png",
+      "src": "icons-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
@@ -22,8 +22,5 @@
   "background_color": "#F2C879",
   "display": "fullscreen",
   "theme_color": "#010440",
-  "icons": [
-    {"512": "icons-512.png"},
-    {"128": "icons-129.png"}
-  ]
+  "start_url": "/"
 }
