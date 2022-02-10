@@ -1,6 +1,4 @@
 import decode from 'jwt-decode';
-import { setCookie } from "./cookies";
-import { setLocalStorage } from "./localStorage";
 
 class AuthService {
   getProfile() {
@@ -45,8 +43,3 @@ class AuthService {
 }
 
 export default new AuthService();
-
-export const setAuthentication = (token, user) => {
-    setCookie('token', token);
-    setLocalStorage('user', user);
-}
