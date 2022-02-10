@@ -5,9 +5,12 @@ import TaskAlt from '@mui/icons-material/TaskAlt';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import DoDisturb from '@mui/icons-material/DoDisturb';
 import dayjs from 'dayjs';
-
+import AuthService from '../utils/auth';
 function ItemEdit({ dialogOpen, setEditedItem, editedItem, setDialogOpen, saveItem, updateItem }) {
   // Check whether adding or updating item
+  if (!AuthService.loggedIn()) {
+    window.location.assign("/");
+  }
   let isNewItem;
   !editedItem._id ? (isNewItem = true) : (isNewItem = false);
 
