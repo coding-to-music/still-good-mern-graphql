@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 // Special rule for service worker
 app.get("/service-worker.js", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "public", "service-worker.js"));
+  res.sendFile(path.resolve(__dirname, "../client/src/service-worker.js"));
 });
 // catch any other req's send to homepage
 app.get('*', (req, res) => {
