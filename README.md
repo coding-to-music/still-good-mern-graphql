@@ -207,6 +207,9 @@ heroku create still-good-mern-graphql
 heroku config:set
 
 heroku config:set PUBLIC_URL="https://still-good-mern-graphql.herokuapp.com"
+
+heroku config:set MONGODB_URI="mongodb+srv://<userid>:<password>@cluster0.zadqe.mongodb.net/still-good-mern-graphql?retryWrites=true&w=majority"
+heroku config:set SECRET_JWT="something-secret"
 ```
 
 ## Push to Heroku
