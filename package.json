@@ -1,26 +1,30 @@
 {
-  "name": "still-good",
+  "name": "still-good-mern-graphql",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://still-good-mern-graphql.herokuapp.com",
   "main": "index.js",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm start\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "build": "cd client && npm run build",
-    "seed": "cd server && npm run seed"
+    "seed": "cd server && npm run seed",
+    "deploy": "git add . && git commit -m Heroku && git push && git push heroku && heroku logs --tail --remote heroku"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vw0389/still-good.git"
+    "url": "git+https://github.com/coding-to-music/still-good-mern-graphql.git"
   },
   "author": "Victor Weinert, TJ James, Lauren Groh, Melvin Welton, Patrick Sebstead, Alex McDaniel",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vw0389/still-good/issues"
+    "url": "https://github.com/coding-to-music/still-good-mern-graphql/issues"
   },
-  "homepage": "https://github.com/vw0389/still-good#readme",
   "dependencies": {
     "apollo-server-express": "^3.6.2",
     "bcrypt": "^5.0.1",
